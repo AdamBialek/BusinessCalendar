@@ -86,6 +86,7 @@ public class Article {
     public String buildUrl(){
             final String Api_Url = "https://api.nytimes.com/svc/topstories/v2/";
             String Api_WhatNews="";
+
             if(choice.equals("")){
                 Api_WhatNews = "business";
             } else {
@@ -150,6 +151,7 @@ public class Article {
 
                 return articleSet;
         }
+
 
 
 }
