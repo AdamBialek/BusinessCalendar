@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -229,6 +228,63 @@ public class MainScreenController {
             newer.setDisable(false);
         }
     }
+
+    @FXML
+    public void button1() {}
+
+    @FXML
+    public void button2() {}
+
+    @FXML
+    public void button3() {}
+
+    @FXML
+    public void button4() {}
+
+    @FXML
+    public void button5() {}
+
+    @FXML
+    public void button6() {}
+
+    @FXML
+    public void button7() {}
+
+    @FXML
+    public void button8() {}
+
+    @FXML
+    public void button9() {}
+
+    @FXML
+    public void button0() {}
+
+    @FXML
+    public void buttonPoint() {}
+
+    @FXML
+    public void buttonEquals() {}
+
+    @FXML
+    public void buttonAdd() {}
+
+    @FXML
+    public void buttonSubtract() {}
+
+    @FXML
+    public void buttonMultiply() {}
+
+    @FXML
+    public void buttonDivide() {}
+
+    @FXML
+    public void buttonPercentage() {}
+
+    @FXML
+    public void buttonBackspace() {}
+
+    @FXML
+    public void buttonClear() {}
 
     @FXML
     void initialize() throws IOException {
