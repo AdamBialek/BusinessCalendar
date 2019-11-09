@@ -4,6 +4,8 @@ import com.businesscalendar.Article;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +59,9 @@ public class MainScreenController {
     private Button older;
 
     @FXML
+    private Label nyt;
+
+    @FXML
     private Hyperlink articleSpace1Link;
 
     @FXML
@@ -97,6 +102,7 @@ public class MainScreenController {
     @FXML
     public void worldSwitch() {
         article1.chooseNews("world");
+        nyt.setText("New York Times World News");
         article1.buildUrl();
         markLinksAsNotVisited();
         getHeadlines();
@@ -106,6 +112,7 @@ public class MainScreenController {
     @FXML
     public void businessSwitch() {
         article1.chooseNews("business");
+        nyt.setText("New York Times Business News");
         article1.buildUrl();
         markLinksAsNotVisited();
         getHeadlines();
@@ -114,6 +121,7 @@ public class MainScreenController {
     @FXML
     public void politicsSwitch() {
         article1.chooseNews("politics");
+        nyt.setText("New York Times Politics News");
         article1.buildUrl();
         markLinksAsNotVisited();
         getHeadlines();
@@ -122,6 +130,7 @@ public class MainScreenController {
     @FXML
     public void techSwitch() {
         article1.chooseNews("technology");
+        nyt.setText("New York Times Technology News");
         article1.buildUrl();
         markLinksAsNotVisited();
         getHeadlines();
@@ -130,6 +139,7 @@ public class MainScreenController {
     @FXML
     public void sportsSwitch() {
         article1.chooseNews("sports");
+        nyt.setText("New York Times Sports News");
         article1.buildUrl();
         markLinksAsNotVisited();
         getHeadlines();
@@ -138,6 +148,7 @@ public class MainScreenController {
     @FXML
     public void travelSwitch() {
         article1.chooseNews("travel");
+        nyt.setText("New York Times Travel News");
         article1.buildUrl();
         markLinksAsNotVisited();
         getHeadlines();
@@ -173,7 +184,6 @@ public class MainScreenController {
     public void newNews() {
         int now = getSwitchArticles();
         int limit = 0;
-        System.out.println(now);
         if(now>=limit+3){
             setArticle1(articleList.get(now-3));
             setArticle2(articleList.get(now-2));
@@ -187,13 +197,15 @@ public class MainScreenController {
         } else {
             newer.setDisable(true);
         }
+        if(article1.getTitle().equals(articleList.get(0).getTitle())){
+            newer.setDisable(true);
+        }
     }
 
     @FXML
     public void oldNews() {
         int now = getSwitchArticles();
         int limit = getArticleList().size();
-        System.out.println(now);
         if(now<limit-6){
             setArticle1(articleList.get(now+3));
             setArticle2(articleList.get(now+4));

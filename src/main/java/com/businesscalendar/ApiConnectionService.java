@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ApiConnectionService {
+
     public String connectionWithAPI(String url) throws IOException {
 
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
@@ -18,7 +19,6 @@ public class ApiConnectionService {
         while ((line=bufferedReader.readLine())!=null){
             stringBuilder.append(line);
         }
-
 
         return stringBuilder.toString();
     }
