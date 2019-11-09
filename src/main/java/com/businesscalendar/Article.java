@@ -1,9 +1,14 @@
 package com.businesscalendar;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 public class Article {
@@ -19,6 +24,11 @@ public class Article {
         private String picBig;
 
         private String choice="";
+
+        private Image image;
+
+
+
 
     public String getTitle() {
         return title;
@@ -68,6 +78,14 @@ public class Article {
         this.choice = choice;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "TodaysNews{" +
@@ -79,8 +97,8 @@ public class Article {
                 '}';
     }
 
-    public void chooseNews(NewsType val){
-        setChoice(val.toString());
+    public void chooseNews(String string){
+        setChoice(string);
     }
 
     public String buildUrl(){
@@ -109,12 +127,39 @@ public class Article {
             return response;
         }
 
-        public Set<Article> parseJson(String response) {
+//    public Image getImage(String url) throws IOException {
+//        BufferedImage image = null;
+//
+//        URL link = new URL(url);
+//
+//        InputStream inputStream = new BufferedInputStream(link.openStream());
+//        ByteArrayOutputStream out = new ByteArrayOutputStream();
+//        byte[] buffer = new byte[1024];
+//        int n=0;
+//
+//        while (-1!=(n=inputStream.read(buffer))){
+//            out.write(buffer,0,n);
+//        }
+//        out.close();
+//        inputStream.close();
+//        byte[] response = out.toByteArray();
+//
+//        int index = url.lastIndexOf("/");
+//        String filename = url.substring(index+1);
+//
+//        FileOutputStream fileOutputStream = new FileOutputStream("C:/Images/businessCalendar/src/main/resources/images/"+filename);
+//
+//        Image imageToDisplay = new Image("file")
+//
+//        return response;
+//    }
+
+        public List<Article> parseJson(String response) throws IOException {
             JSONObject rootObject = new JSONObject(response);
             
             JSONArray articlesArray = rootObject.getJSONArray("results");
 
-            Set<Article> articleSet = new LinkedHashSet<>();
+            List<Article> articleLinkedList = new LinkedList<>();
 
             int counter=0;
 
@@ -144,12 +189,12 @@ public class Article {
                 article.setPreview(preview);
 
 
-                articleSet.add(article);
+                articleLinkedList.add(article);
 
 
             }
 
-                return articleSet;
+                return articleLinkedList;
         }
 
 
