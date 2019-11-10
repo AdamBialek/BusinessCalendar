@@ -16,7 +16,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
+
+        primaryStage.setMinWidth(355);
+        primaryStage.setMinHeight(200);
+
         Scene scene=new Scene(anchorPane);
+
+
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Business Calendar");
