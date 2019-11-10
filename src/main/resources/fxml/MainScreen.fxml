@@ -44,7 +44,7 @@
                   <Button mnemonicParsing="false" onAction="#button8" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#button5" text="5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#button2" text="2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button mnemonicParsing="false" onAction="#buttonPoint" text="," GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" onAction="#buttonPoint" text="." GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#button0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#button3" text="3" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Button mnemonicParsing="false" onAction="#button6" text="6" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -55,7 +55,7 @@
                   <Button mnemonicParsing="false" onAction="#buttonEquals" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#buttonAdd" text="+" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <Button mnemonicParsing="false" onAction="#buttonSubtract" text="-" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnSpan="2147483647" />
+                  <TextField fx:id="calculatorScreen" GridPane.columnSpan="2147483647" />
                </children>
             </GridPane>
          </children></AnchorPane>

@@ -5,7 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +24,20 @@ public class MainScreenController {
     private Article article3;
 
     private int articlesToDisplay;
+
+    private String calculatorNumber1="";
+
+    private String operation="";
+
+    private BigDecimal number1;
+
+    public String getCalculatorNumber1() {
+        return calculatorNumber1;
+    }
+
+    public void setCalculatorNumber1(String calculatorNumber1) {
+        this.calculatorNumber1 = calculatorNumber1;
+    }
 
     @FXML
     public List<Article> articleList;
@@ -68,6 +87,9 @@ public class MainScreenController {
 
     @FXML
     private Hyperlink articleSpace3Link;
+
+    @FXML
+    private TextField calculatorScreen;
 
     public void setArticles(){
         setArticle1(articleList.get(0));
@@ -230,65 +252,204 @@ public class MainScreenController {
     }
 
     @FXML
-    public void button1() {}
+    public void button1() {
+        setCalculatorNumber1(getCalculatorNumber1()+"1");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button2() {}
+    public void button2() {
+        setCalculatorNumber1(getCalculatorNumber1()+"2");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button3() {}
+    public void button3() {
+        setCalculatorNumber1(getCalculatorNumber1()+"3");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button4() {}
+    public void button4() {
+        setCalculatorNumber1(getCalculatorNumber1()+"4");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button5() {}
+    public void button5() {
+        setCalculatorNumber1(getCalculatorNumber1()+"5");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button6() {}
+    public void button6() {
+        setCalculatorNumber1(getCalculatorNumber1()+"6");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button7() {}
+    public void button7() {
+        setCalculatorNumber1(getCalculatorNumber1()+"7");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button8() {}
+    public void button8() {
+        setCalculatorNumber1(getCalculatorNumber1()+"8");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button9() {}
+    public void button9() {
+        setCalculatorNumber1(getCalculatorNumber1()+"9");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void button0() {}
+    public void button0() {
+        setCalculatorNumber1(getCalculatorNumber1()+"0");
+        calculatorScreen.setText(calculatorNumber1);
+    }
 
     @FXML
-    public void buttonPoint() {}
+    public void buttonPoint() {
+        if (!getCalculatorNumber1().contains(".")){
+            setCalculatorNumber1(getCalculatorNumber1()+".");
+            calculatorScreen.setText(calculatorNumber1);
+        }
+    }
 
     @FXML
-    public void buttonEquals() {}
+    public void buttonEquals() {
+        calcResult();
+        operation="";
+    }
 
     @FXML
-    public void buttonAdd() {}
+    public void buttonAdd() {
+        if(operation.length()<1){
+            operation="+";
+            number1=new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            calculatorScreen.setText("");
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            calcResult();
+            operation="+";
+            setCalculatorNumber1("");
+        }
+    }
 
     @FXML
-    public void buttonSubtract() {}
+    public void buttonSubtract() {
+        if(operation.length()<1) {
+            operation = "-";
+            number1 = new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            calculatorScreen.setText("");
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            calcResult();
+            operation="-";
+            setCalculatorNumber1("");
+        }
+    }
 
     @FXML
-    public void buttonMultiply() {}
+    public void buttonMultiply() {
+        if(operation.length()<1) {
+            operation = "*";
+            number1 = new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            calculatorScreen.setText("");
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            calcResult();
+            operation="*";
+            setCalculatorNumber1("");
+        }
+    }
 
     @FXML
-    public void buttonDivide() {}
+    public void buttonDivide() {
+        if(operation.length()<1) {
+            operation = "/";
+            number1 = new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            calculatorScreen.setText("");
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            calcResult();
+            operation="/";
+            setCalculatorNumber1("");
+        }
+    }
 
     @FXML
     public void buttonPercentage() {}
 
     @FXML
-    public void buttonBackspace() {}
+    public void buttonBackspace() {
+        setCalculatorNumber1(getCalculatorNumber1().substring(0,calculatorNumber1.length()-1));
+        calculatorScreen.setText(getCalculatorNumber1());
+    }
 
     @FXML
-    public void buttonClear() {}
+    public void buttonClear() {
+        number1=BigDecimal.ZERO;
+        calculatorNumber1="";
+        operation="";
+        calculatorScreen.setText("");
+    }
+
+    public void calcResult(){
+        if (!getCalculatorNumber1().equals("")) {
+            if (operation.equals("+")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                number1 = number1.add(bigDecimal);
+                calculatorScreen.setText(number1.toString());
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+            } else if (operation.equals("-")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                number1 = number1.subtract(bigDecimal);
+                calculatorScreen.setText(number1.toString());
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+            } else if (operation.equals("*")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                number1 = number1.multiply(bigDecimal);
+                calculatorScreen.setText(number1.toString());
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+            } else if (operation.equals("/")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                try {
+                    number1 = number1.divide(bigDecimal);
+                } catch (ArithmeticException e) {
+                    number1 = number1.divide(bigDecimal, 15, RoundingMode.HALF_DOWN);
+                }
+                calculatorScreen.setText(number1.toString());
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+            } else if (operation.equals("%")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                BigDecimal percent = BigDecimal.valueOf(100);
+                try {
+                    number1 = number1.divide(bigDecimal).multiply(percent);
+                } catch (ArithmeticException e) {
+                    MathContext mathContext = new MathContext(15);
+                    number1 = number1.divide(bigDecimal, 17, RoundingMode.HALF_DOWN).multiply(percent).round(mathContext);
+                }
+                calculatorScreen.setText(number1.toString());
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+            }
+        } else {
+            operation="";
+        }
+    }
 
     @FXML
     void initialize() throws IOException {
         article1 = new Article();
         getHeadlines();
+        number1=new BigDecimal(0);
     }
 }
