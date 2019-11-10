@@ -3,7 +3,7 @@ package com.businesscalendar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -15,9 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
-        AnchorPane anchorPane = fxmlLoader.load();
+        FlowPane anchorPane = fxmlLoader.load();
 
-        primaryStage.setMinWidth(355);
+        primaryStage.setMinWidth(625);
         primaryStage.setMinHeight(200);
 
         Scene scene=new Scene(anchorPane);
