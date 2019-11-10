@@ -321,8 +321,17 @@ public class MainScreenController {
 
     @FXML
     public void buttonEquals() {
-        calcResult();
-        operation="";
+        if(!getCalculatorNumber1().equals("")){
+            calcResult();
+            operation="";
+        } else {
+
+            setCalculatorNumber1(number1.toString());
+            calculatorScreen.setText(getCalculatorNumber1());
+            number1=BigDecimal.ZERO;
+            operation="";
+        }
+
     }
 
     @FXML
@@ -396,6 +405,17 @@ public class MainScreenController {
         calculatorNumber1="";
         operation="";
         calculatorScreen.setText("");
+    }
+
+    @FXML
+    public void plusMinus() {
+        if (getCalculatorNumber1().lastIndexOf("-")==0){
+            setCalculatorNumber1(getCalculatorNumber1().replace("-",""));
+            calculatorScreen.setText(calculatorNumber1);
+        } else if(getCalculatorNumber1().lastIndexOf("-")==-1){
+            setCalculatorNumber1("-"+getCalculatorNumber1());
+            calculatorScreen.setText(calculatorNumber1);
+        }
     }
 
     public void calcResult(){
