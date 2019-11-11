@@ -58,7 +58,7 @@
                     </rowConstraints>
                      <children>
                         <Button mnemonicParsing="false" onAction="#checkWeatherButton" text="Click" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextField fx:id="cityName" prefHeight="26.0" prefWidth="137.0" promptText="Type City Name" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <TextField fx:id="cityName" alignment="CENTER" prefHeight="26.0" prefWidth="137.0" promptText="Type City Name" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>

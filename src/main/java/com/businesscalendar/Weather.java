@@ -118,11 +118,11 @@ public class Weather implements UseApi {
         JSONObject rootObject = new JSONObject(json);
         if (rootObject.getInt("cod") == 200) {
             JSONObject mainObject = rootObject.getJSONObject("main");
-            DecimalFormat df = new DecimalFormat("#.##");
+            DecimalFormat df = new DecimalFormat("#.#");
             temp = mainObject.getDouble("temp");
             temp = temp - 273;
 
-            setTemperature(temp.toString() + " \u00b0C");
+            setTemperature( df.format(temp) + " \u00b0C");
 
             name=rootObject.getString("name");
 

@@ -484,13 +484,15 @@ public class MainScreenController {
 
     @FXML
     public void checkWeatherButton() throws IOException {
-        String city= cityName.getText();
-        cityName.setText("");
-        Weather weather = new Weather();
-        weather.setCity(city);
-        weather.parseJson(weather.getResponse(weather.buildUrl()));
-        String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
-        weatherDataInput.setText(weatherInfo);
+        if (cityName.getText().length()>0){
+            String city= cityName.getText();
+            cityName.setText("");
+            Weather weather = new Weather();
+            weather.setCity(city);
+            weather.parseJson(weather.getResponse(weather.buildUrl()));
+            String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
+            weatherDataInput.setText(weatherInfo);
+        }
     }
 
     @FXML
