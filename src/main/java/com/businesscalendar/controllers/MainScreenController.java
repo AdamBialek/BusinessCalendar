@@ -1,6 +1,7 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.Article;
+import com.businesscalendar.Weather;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -17,6 +18,8 @@ import java.util.List;
 
 public class MainScreenController {
 
+    //*****************************WSZYSTKO DLA NEWSÓW*********************************:
+
     private Article article1;
 
     private Article article2;
@@ -25,19 +28,6 @@ public class MainScreenController {
 
     private int articlesToDisplay;
 
-    private String calculatorNumber1="";
-
-    private String operation="";
-
-    private BigDecimal number1;
-
-    public String getCalculatorNumber1() {
-        return calculatorNumber1;
-    }
-
-    public void setCalculatorNumber1(String calculatorNumber1) {
-        this.calculatorNumber1 = calculatorNumber1;
-    }
 
     @FXML
     public List<Article> articleList;
@@ -88,8 +78,7 @@ public class MainScreenController {
     @FXML
     private Hyperlink articleSpace3Link;
 
-    @FXML
-    private TextField calculatorScreen;
+
 
     public void setArticles(){
         setArticle1(articleList.get(0));
@@ -250,6 +239,25 @@ public class MainScreenController {
             newer.setDisable(false);
         }
     }
+
+    //*****************************WSZYSTKO DLA KALKULATORA*********************************:
+
+    private String calculatorNumber1="";
+
+    private String operation="";
+
+    private BigDecimal number1;
+
+    public String getCalculatorNumber1() {
+        return calculatorNumber1;
+    }
+
+    public void setCalculatorNumber1(String calculatorNumber1) {
+        this.calculatorNumber1 = calculatorNumber1;
+    }
+
+    @FXML
+    private TextField calculatorScreen;
 
     @FXML
     public void button1() {
@@ -464,6 +472,25 @@ public class MainScreenController {
         } else {
             operation="";
         }
+    }
+
+    //*****************************WSZYSTKO DLA POGODY*********************************:
+
+    @FXML
+    private Label weatherDataInput;
+
+    @FXML
+    private TextField cityName;
+
+    @FXML
+    public void checkWeatherButton() throws IOException {
+        String city= cityName.getText();
+        cityName.setText("");
+        Weather weather = new Weather();
+        weather.setCity(city);
+        weather.parseJson(weather.getResponse(weather.buildUrl()));
+        String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
+        weatherDataInput.setText(weatherInfo);
     }
 
     @FXML

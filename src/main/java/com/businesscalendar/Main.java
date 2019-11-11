@@ -15,12 +15,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
-        FlowPane anchorPane = fxmlLoader.load();
+        FlowPane flowPane = fxmlLoader.load();
 
         primaryStage.setMinWidth(625);
         primaryStage.setMinHeight(200);
 
-        Scene scene=new Scene(anchorPane);
+        Scene scene=new Scene(flowPane);
 
 
 

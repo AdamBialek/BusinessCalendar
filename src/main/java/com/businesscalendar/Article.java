@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.*;
 import java.util.*;
 
-public class Article {
+public class Article implements UseApi {
 
         private String title;
 
@@ -114,13 +114,58 @@ public class Article {
             return requestURL;
         }
 
-        public String getResponse(String url) throws IOException {
-            String response = "";
+    @Override
+    public String getResponse(String url) throws IOException {
+        String response = "";
 
-            response = new ApiConnectionService().connectionWithAPI(url);
+        response = new ApiConnectionService().connectionWithAPI(url);
 
-            return response;
+        return response;
+    }
+
+    @Override
+    public List<Article> parseJson(String response) {
+        JSONObject rootObject = new JSONObject(response);
+
+        JSONArray articlesArray = rootObject.getJSONArray("results");
+
+        List<Article> articleLinkedList = new LinkedList<>();
+
+        int counter=0;
+
+        for (Object a: articlesArray
+        ) {
+            Article article = new Article();
+            JSONObject jsonObject = articlesArray.getJSONObject(counter);
+            counter++;
+
+            String title = jsonObject.getString("title");
+            String url = jsonObject.getString("url");
+            String preview = jsonObject.getString("abstract");
+            JSONArray multimedia = jsonObject.getJSONArray("multimedia");
+
+            if(multimedia.length()!=0){
+                JSONObject multiSmall = multimedia.getJSONObject(0);
+                String picSmall = multiSmall.getString("url");
+                JSONObject multiBig = multimedia.getJSONObject(3);
+                String picBig = multiBig.getString("url");
+                article.setPicBig(picBig);
+                article.setPicSmall(picSmall);
+            }
+
+
+            article.setTitle(title);
+            article.setUrl(url);
+            article.setPreview(preview);
+
+
+            articleLinkedList.add(article);
+
+
         }
+
+        return articleLinkedList;
+    }
 
 //    public Image getImage(String url) throws IOException {
 //        BufferedImage image = null;
@@ -148,49 +193,6 @@ public class Article {
 //
 //        return response;
 //    }
-
-        public List<Article> parseJson(String response) throws IOException {
-            JSONObject rootObject = new JSONObject(response);
-            
-            JSONArray articlesArray = rootObject.getJSONArray("results");
-
-            List<Article> articleLinkedList = new LinkedList<>();
-
-            int counter=0;
-
-            for (Object a: articlesArray
-                 ) {
-                Article article = new Article();
-                JSONObject jsonObject = articlesArray.getJSONObject(counter);
-                counter++;
-
-                String title = jsonObject.getString("title");
-                String url = jsonObject.getString("url");
-                String preview = jsonObject.getString("abstract");
-                JSONArray multimedia = jsonObject.getJSONArray("multimedia");
-
-                if(multimedia.length()!=0){
-                    JSONObject multiSmall = multimedia.getJSONObject(0);
-                    String picSmall = multiSmall.getString("url");
-                    JSONObject multiBig = multimedia.getJSONObject(3);
-                    String picBig = multiBig.getString("url");
-                    article.setPicBig(picBig);
-                    article.setPicSmall(picSmall);
-                }
-
-
-                article.setTitle(title);
-                article.setUrl(url);
-                article.setPreview(preview);
-
-
-                articleLinkedList.add(article);
-
-
-            }
-
-                return articleLinkedList;
-        }
 
 
 
