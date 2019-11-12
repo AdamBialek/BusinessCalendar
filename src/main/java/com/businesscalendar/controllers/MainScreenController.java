@@ -483,15 +483,20 @@ public class MainScreenController {
     private TextField cityName;
 
     @FXML
-    public void checkWeatherButton() throws IOException {
+    public void checkWeatherButton() {
         if (cityName.getText().length()>0){
             String city= cityName.getText();
             cityName.setText("");
             Weather weather = new Weather();
             weather.setCity(city);
-            weather.parseJson(weather.getResponse(weather.buildUrl()));
-            String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
-            weatherDataInput.setText(weatherInfo);
+
+            try {
+                weather.parseJson(weather.getResponse(weather.buildUrl()));
+                String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
+                weatherDataInput.setText(weatherInfo);
+            } catch (IOException e) {
+                weatherDataInput.setText("Sorry something went wrong.\nWe couldn't find such a city :(");
+            }
         }
     }
 
