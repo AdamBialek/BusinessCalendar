@@ -501,7 +501,7 @@ public class MainScreenController {
     }
 
     @FXML
-    void initialize() throws IOException {
+    void initialize() {
         article1 = new Article();
         getHeadlines();
         number1=new BigDecimal(0);
