@@ -11,8 +11,8 @@ public class SelectScreenController {
     @FXML
     private void enterLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/LoginScreen.fxml"));
-        AnchorPane anchorPane;
-        anchorPane = fxmlLoader.load();
+        AnchorPane anchorPane = fxmlLoader.load();
+        setAnchorPane(anchorPane);
     }
 
     @FXML
@@ -20,5 +20,15 @@ public class SelectScreenController {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/CreateLoginInfo.fxml"));
         AnchorPane anchorPane;
         anchorPane = fxmlLoader.load();
+    }
+
+    public void setAnchorPane(AnchorPane anchorPane) {
+        anchorPane.getChildren().clear();
+        anchorPane.getChildren().add(anchorPane);
+    }
+
+    @FXML
+    public void initialize() throws IOException {
+
     }
 }

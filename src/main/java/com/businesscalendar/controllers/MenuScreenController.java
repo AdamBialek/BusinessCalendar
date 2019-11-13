@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class MainScreenController {
+public class MenuScreenController {
 
     //*****************************WSZYSTKO DLA NEWSÓW*********************************:
 

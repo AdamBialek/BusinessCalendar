@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<FlowPane alignment="CENTER" hgap="30.0" prefHeight="639.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.MainScreenController">
+<FlowPane alignment="CENTER" hgap="30.0" prefHeight="639.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.MenuScreenController">
    <children>
       <AnchorPane prefHeight="639.0" prefWidth="571.0">
          <children>
