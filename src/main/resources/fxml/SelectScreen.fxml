@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.SelectScreenController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="62.0" text="Option select" />
+      <Button layoutX="53.0" layoutY="148.0" mnemonicParsing="false" onAction="#enterLogin" text="Login" />
+      <Button layoutX="198.0" layoutY="148.0" mnemonicParsing="false" onAction="#enterRegister" text="Register" />
+   </children>
+</AnchorPane>

@@ -5,14 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.LoginScreen">
    <children>
       <Label layoutX="48.0" layoutY="55.0" text="Login" AnchorPane.leftAnchor="50.0" />
-      <TextField layoutX="48.0" layoutY="181.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <TextField fx:id="passwordContent" layoutX="48.0" layoutY="181.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Label layoutX="49.0" layoutY="151.0" prefHeight="21.0" prefWidth="68.0" text="Password" AnchorPane.leftAnchor="50.0" />
-      <TextField layoutX="48.0" layoutY="88.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <Button layoutX="48.0" layoutY="264.0" mnemonicParsing="false" text="Back" AnchorPane.leftAnchor="50.0" />
-      <Button layoutX="232.0" layoutY="264.0" mnemonicParsing="false" text="Login" AnchorPane.rightAnchor="50.0" />
+      <TextField fx:id="loginContent" layoutX="48.0" layoutY="88.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <Button layoutX="48.0" layoutY="264.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="50.0" />
+      <Button layoutX="232.0" layoutY="264.0" mnemonicParsing="false" onAction="#attemptLogin" text="Login" AnchorPane.rightAnchor="50.0" />
    </children>
 </AnchorPane>
