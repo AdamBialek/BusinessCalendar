@@ -7,10 +7,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class Main extends Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         launch(args);
+//        Connection connection = new SQLConnection().getConnection();
+//        CRUD crud = new CRUD(connection);
+//        int result = crud.loginAvailability("testUser");
+//        System.out.println(result);
     }
 
     @Override

@@ -6,7 +6,7 @@ public class SQLConnection {
     private Connection connection;
 
     public Connection connectionToSQLServer() {
-        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=connectishq;integratedSecurity=true;";
+        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=Calendar;integratedSecurity=true;";
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
