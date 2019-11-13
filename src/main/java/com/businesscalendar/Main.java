@@ -18,8 +18,8 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
 
-//        primaryStage.setMinWidth(625);
-//        primaryStage.setMinHeight(200);
+        primaryStage.setMinWidth(307);
+        primaryStage.setMinHeight(400);
 
         Scene scene=new Scene(anchorPane);
 

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class LoginScreenController {
     @FXML
     private void attemptLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
-        AnchorPane anchorPane = fxmlLoader.load();
+        FlowPane anchorPane = fxmlLoader.load();
         mainScreenController.setScreen(anchorPane);
     }
 }

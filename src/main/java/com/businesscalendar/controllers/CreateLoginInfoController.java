@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
 
@@ -28,10 +29,13 @@ public class CreateLoginInfoController {
     }
 
     @FXML
-    private void attemptToRegister() {
-        createLogin.disableProperty();
-        createPassword.disableProperty();
-        String login = createLogin.getText();
-        String password = createPassword.getText();
+    private void attemptToRegister() throws IOException {
+//        createLogin.disableProperty();
+//        createPassword.disableProperty();
+//        String login = createLogin.getText();
+//        String password = createPassword.getText();
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
+        FlowPane anchorPane = fxmlLoader.load();
+        mainScreenController.setScreen(anchorPane);
     }
 }

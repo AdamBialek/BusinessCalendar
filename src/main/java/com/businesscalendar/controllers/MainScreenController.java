@@ -3,6 +3,7 @@ package com.businesscalendar.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
 
@@ -30,6 +31,11 @@ public class MainScreenController {
     }
 
     public void setScreen(AnchorPane anchorPane){
+        mainAnchorPane.getChildren().clear();
+        mainAnchorPane.getChildren().add(anchorPane);
+    }
+
+    public void setScreen(FlowPane anchorPane){
         mainAnchorPane.getChildren().clear();
         mainAnchorPane.getChildren().add(anchorPane);
     }
