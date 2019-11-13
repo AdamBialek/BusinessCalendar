@@ -35,8 +35,8 @@ public class MainScreenController {
         mainAnchorPane.getChildren().add(anchorPane);
     }
 
-    public void setScreen(FlowPane anchorPane){
+    public void setScreen(FlowPane flowPane){
         mainAnchorPane.getChildren().clear();
-        mainAnchorPane.getChildren().add(anchorPane);
+        mainAnchorPane.getChildren().add(flowPane);
     }
 }
