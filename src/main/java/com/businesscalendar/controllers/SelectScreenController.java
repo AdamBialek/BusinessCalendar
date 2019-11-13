@@ -8,27 +8,28 @@ import java.io.IOException;
 
 public class SelectScreenController {
 
+    private MainScreenController mainScreenController;
+
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
+    }
+
     @FXML
     private void enterLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/LoginScreen.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
-        setAnchorPane(anchorPane);
+        LoginScreenController loginScreenController = fxmlLoader.getController();
+        loginScreenController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
+
     }
 
     @FXML
     private void enterRegister() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/CreateLoginInfo.fxml"));
-        AnchorPane anchorPane;
-        anchorPane = fxmlLoader.load();
-    }
-
-    public void setAnchorPane(AnchorPane anchorPane) {
-        anchorPane.getChildren().clear();
-        anchorPane.getChildren().add(anchorPane);
-    }
-
-    @FXML
-    public void initialize() throws IOException {
-
+        AnchorPane anchorPane = fxmlLoader.load();
+        CreateLoginInfoController createLoginInfoController = fxmlLoader.getController();
+        createLoginInfoController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
     }
 }

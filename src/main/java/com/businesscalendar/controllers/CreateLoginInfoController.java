@@ -10,6 +10,12 @@ import java.io.IOException;
 
 public class CreateLoginInfoController {
 
+    private MainScreenController mainScreenController;
+
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
+    }
+
     @FXML
     private TextField createLogin;
 
@@ -18,9 +24,7 @@ public class CreateLoginInfoController {
 
     @FXML
     private void goBackToSelectScreen() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/SelectScreen.fxml"));
-        AnchorPane anchorPane;
-        anchorPane = fxmlLoader.load();
+        mainScreenController.loadMenuScreen();
     }
 
     @FXML
