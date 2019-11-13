@@ -500,6 +500,8 @@ public class MainScreenController {
         }
     }
 
+    //*****************************WSZYSTKO DLA KALENDARZA*********************************:
+
     @FXML
     void initialize() {
         article1 = new Article();
