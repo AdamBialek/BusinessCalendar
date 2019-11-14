@@ -6,7 +6,6 @@ import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
@@ -41,14 +40,12 @@ public class CreateLoginInfoController {
 
     @FXML
     private void attemptToRegister() throws IOException, SQLException {
-        createLogin.disableProperty();
-        createPassword.disableProperty();
         String loginToCheck = createLogin.getText();
         String password = createPassword.getText();
 
         boolean loginOK = login.checkLoginOrPassword(loginToCheck);
 
-        if(loginOK){
+        if(loginOK & !loginToCheck.equals(password)){
             int loginAvail=crud.loginAvailability(loginToCheck);
             if(loginAvail==0){
                 boolean passOK = login.checkLoginOrPassword(password);

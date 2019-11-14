@@ -52,14 +52,13 @@ public class CRUD {
             counter++;
             for(int i=1;i<=columnCount; i++){
                 if(rsmd.getColumnName(i).equals("Login")){
-                    rs.getString(i).equals(login);
-                    System.out.println(rs.getString(i));
-                    checkLogin = true;
+                    if(rs.getString(i).equals(login)){
+                        checkLogin = true;
+                    }
                 }
                 if(rsmd.getColumnName(i).equals("Password")){
-                    rs.getString(i).equals(password);
-                    System.out.println(rs.getString(i));
-                    checkPass = true;
+                    if(rs.getString(i).equals(password)){
+                        checkPass = true;}
                 }
             }
         }
