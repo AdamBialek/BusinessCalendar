@@ -1,7 +1,9 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.Article;
+import com.businesscalendar.NewsType;
 import com.businesscalendar.Weather;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -18,9 +20,7 @@ import java.math.RoundingMode;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class MenuScreenController {
@@ -511,8 +511,62 @@ public class MenuScreenController {
 
     private LocalDate todayDate;
 
+    private LocalDate firstDay;
+
+    @FXML
+    private Label calendarMonthLabel;
+
     @FXML
     private GridPane calendarDaysGridPane;
+
+    public void disableButton(int buttonNo, boolean choice){
+        String idToCompare = new StringBuilder("dayCard").append(buttonNo).toString();
+        for(Node n : calendarDaysGridPane.getChildren()){
+            if(n instanceof Button){
+                if(((Button)n).getId().equals(idToCompare)){
+                    ((Button)n).setText("");
+                    ((Button)n).setDisable(choice);
+                }
+            }
+        }
+    }
+
+    public void setButtonText(int buttonNo, int day){
+        String idToCompare = new StringBuilder("dayCard").append(buttonNo).toString();
+        for(Node n : calendarDaysGridPane.getChildren()){
+            if(n instanceof Button){
+                if(((Button)n).getId().equals(idToCompare)){
+                    ((Button)n).setDisable(false);
+                    ((Button)n).setText(String.valueOf(day));
+                }
+            }
+        }
+    }
+
+    public void setDatesToDisplay(int daysMonth, int thisYear, Month month, int weekdayAtStartOfMonth){
+        for(int i=0; i<weekdayAtStartOfMonth-1; i++){
+            disableButton(i,true);
+        }
+        int day=0;
+        for(int i=weekdayAtStartOfMonth-1; i<daysMonth+weekdayAtStartOfMonth;i++){
+
+
+            day++;
+            setButtonText(i,day);
+
+        }
+        for (int i=weekdayAtStartOfMonth+daysMonth-1;i<42;i++){
+            disableButton(i,true);
+        }
+        calendarMonthLabel.setText(month.toString());
+
+    }
+
+    @FXML
+    public void prevMonthSwitch(){}
+
+    @FXML
+    public void nextMonthSwitch(){}
 
     @FXML
     public void setCalendarDaysGridPane(){
@@ -523,16 +577,160 @@ public class MenuScreenController {
         DayOfWeek firstOfMonth =firstDay.getDayOfWeek();
         int weekdayAtStartOfMonth=firstOfMonth.getValue();
         int daysMonth = thisMonth.length(leapYear);
-        int prevMonthItems = firstOfMonth.getValue()-1;
-        int nextMonthItems = 42-(prevMonthItems+daysMonth);
     }
-
 
     @FXML
     void initialize() {
         article1 = new Article();
         getHeadlines();
         number1=new BigDecimal(0);
+//        *********KALENDARZ************:
+//        List<Button> buttonsList = new LinkedList<>();
+//        buttonsList.addAll(Arrays.asList(dayCard0,dayCard1,dayCard2,dayCard3,dayCard4,dayCard5,dayCard6,dayCard6,dayCard7,dayCard8,dayCard9,dayCard10,dayCard11,dayCard11,dayCard12,dayCard13,dayCard13,dayCard14,dayCard14,dayCard15,dayCard16,dayCard16,dayCard17,dayCard18,dayCard18,dayCard19,dayCard20,dayCard21,dayCard22));
         todayDate = LocalDate.now();
+        int thisYear = todayDate.getYear();
+        Month thisMonth = todayDate.getMonth();
+        firstDay = LocalDate.of(thisYear,thisMonth,1);
+        boolean leapYear = todayDate.isLeapYear();
+        int daysMonth = thisMonth.length(leapYear);
+        DayOfWeek firstOfMonth =firstDay.getDayOfWeek();
+        int weekdayAtStartOfMonth=firstOfMonth.getValue();
+//        ObservableList<Node> nodes;
+//        nodes = calendarDaysGridPane.getChildren();
+        setDatesToDisplay(daysMonth,thisYear,thisMonth,weekdayAtStartOfMonth);
+//        for (Node n: nodes
+//             ) {
+//            if(n instanceof Button){
+//                if(((Button) n).getId().equals("dayCard15")){
+//                    ((Button) n).setText(todayDate.toString());
+//                }
+//            }
+//        }
     }
+
+//    @FXML
+//    private Button dayCard0;
+//
+//    @FXML
+//    private Button dayCard1;
+//
+//    @FXML
+//    private Button dayCard2;
+//
+//    @FXML
+//    private Button dayCard3;
+//
+//    @FXML
+//    private Button dayCard4;
+//
+//    @FXML
+//    private Button dayCard5;
+//
+//    @FXML
+//    private Button dayCard6;
+//
+//    @FXML
+//    private Button dayCard7;
+//
+//    @FXML
+//    private Button dayCard8;
+//
+//    @FXML
+//    private Button dayCard9;
+//
+//    @FXML
+//    private Button dayCard10;
+//
+//    @FXML
+//    private Button dayCard11;
+//
+//    @FXML
+//    private Button dayCard12;
+//
+//    @FXML
+//    private Button dayCard13;
+//
+//    @FXML
+//    private Button dayCard14;
+//
+//    @FXML
+//    private Button dayCard15;
+//
+//    @FXML
+//    private Button dayCard16;
+//
+//    @FXML
+//    private Button dayCard17;
+//
+//    @FXML
+//    private Button dayCard18;
+//
+//    @FXML
+//    private Button dayCard19;
+//
+//    @FXML
+//    private Button dayCard20;
+//
+//    @FXML
+//    private Button dayCard21;
+//
+//    @FXML
+//    private Button dayCard22;
+//
+//    @FXML
+//    private Button dayCard23;
+//
+//    @FXML
+//    private Button dayCard24;
+//
+//    @FXML
+//    private Button dayCard25;
+//
+//    @FXML
+//    private Button dayCard26;
+//
+//    @FXML
+//    private Button dayCard27;
+//
+//    @FXML
+//    private Button dayCard28;
+//
+//    @FXML
+//    private Button dayCard29;
+//
+//    @FXML
+//    private Button dayCard30;
+//
+//    @FXML
+//    private Button dayCard31;
+//
+//    @FXML
+//    private Button dayCard32;
+//
+//    @FXML
+//    private Button dayCard33;
+//
+//    @FXML
+//    private Button dayCard34;
+//
+//    @FXML
+//    private Button dayCard35;
+//
+//    @FXML
+//    private Button dayCard36;
+//
+//    @FXML
+//    private Button dayCard37;
+//
+//    @FXML
+//    private Button dayCard38;
+//
+//    @FXML
+//    private Button dayCard39;
+//
+//    @FXML
+//    private Button dayCard40;
+//
+//    @FXML
+//    private Button dayCard41;
 }
