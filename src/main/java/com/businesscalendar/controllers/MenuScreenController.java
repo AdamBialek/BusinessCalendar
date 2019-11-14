@@ -2,16 +2,23 @@ package com.businesscalendar.controllers;
 
 import com.businesscalendar.Article;
 import com.businesscalendar.Weather;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -502,10 +509,30 @@ public class MenuScreenController {
 
     //*****************************WSZYSTKO DLA KALENDARZA*********************************:
 
+    private LocalDate todayDate;
+
+    @FXML
+    private GridPane calendarDaysGridPane;
+
+    @FXML
+    public void setCalendarDaysGridPane(){
+        int thisYear = todayDate.getYear();
+        Month thisMonth = todayDate.getMonth();
+        boolean leapYear = todayDate.isLeapYear();
+        LocalDate firstDay = LocalDate.of(thisYear,thisMonth,1);
+        DayOfWeek firstOfMonth =firstDay.getDayOfWeek();
+        int weekdayAtStartOfMonth=firstOfMonth.getValue();
+        int daysMonth = thisMonth.length(leapYear);
+        int prevMonthItems = firstOfMonth.getValue()-1;
+        int nextMonthItems = 42-(prevMonthItems+daysMonth);
+    }
+
+
     @FXML
     void initialize() {
         article1 = new Article();
         getHeadlines();
         number1=new BigDecimal(0);
+        todayDate = LocalDate.now();
     }
 }
