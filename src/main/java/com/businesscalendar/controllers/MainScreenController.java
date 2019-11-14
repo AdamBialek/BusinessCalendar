@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MainScreenController {
 
     @FXML
-    private AnchorPane mainAnchorPane;
+    private FlowPane mainFlowPane;
 
     @FXML
     public void initialize() {
@@ -31,12 +31,12 @@ public class MainScreenController {
     }
 
     public void setScreen(AnchorPane anchorPane){
-        mainAnchorPane.getChildren().clear();
-        mainAnchorPane.getChildren().add(anchorPane);
+        mainFlowPane.getChildren().clear();
+        mainFlowPane.getChildren().add(anchorPane);
     }
 
     public void setScreen(FlowPane flowPane){
-        mainAnchorPane.getChildren().clear();
-        mainAnchorPane.getChildren().add(flowPane);
+        mainFlowPane.getChildren().clear();
+        mainFlowPane.getChildren().add(flowPane);
     }
 }

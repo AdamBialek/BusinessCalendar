@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -15,14 +16,18 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
-        AnchorPane anchorPane = fxmlLoader.load();
+        FlowPane flowPane = fxmlLoader.load();
 
-        primaryStage.setMinWidth(307);
-        primaryStage.setMinHeight(400);
+        flowPane.setPrefHeight(245);
+        flowPane.setPrefWidth(307);
 
-        Scene scene=new Scene(anchorPane);
+//        primaryStage.setMinWidth(250);
+//        primaryStage.setMinHeight(250);
+
+        Scene scene=new Scene(flowPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Business Calendar");
         primaryStage.show();
     }
+
 }
