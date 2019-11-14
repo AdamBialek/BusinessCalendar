@@ -41,14 +41,12 @@ public class LoginScreenController {
         String loginToCheck = loginContent.getText();
         String passToCheck = passwordContent.getText();
         boolean check = crud.loginExist(loginToCheck, passToCheck);
-        System.out.println(check);
         if(check){
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
             FlowPane anchorPane = fxmlLoader.load();
             mainScreenController.setScreen(anchorPane);
         } else {
         }
-
     }
 
     @FXML

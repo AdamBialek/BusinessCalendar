@@ -110,9 +110,9 @@
             </GridPane>
             <AnchorPane layoutX="112.0" layoutY="175.0" prefHeight="45.0" prefWidth="340.0">
                <children>
-                  <Label fx:id="calendarMonthLabel" layoutX="153.0" layoutY="12.0" text="Label" />
+                  <Label fx:id="calendarMonthLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" prefHeight="47.0" prefWidth="102.0" text="Label" wrapText="true" />
                   <Button layoutY="7.0" mnemonicParsing="false" onAction="#prevMonthSwitch" prefHeight="31.0" prefWidth="90.0" text="Previous" />
-                  <Button layoutX="250.0" layoutY="7.0" mnemonicParsing="false" onAction="#nextMonthSwitch" prefHeight="31.0" prefWidth="90.0" text="Next" />
+                  <Button layoutX="254.0" layoutY="7.0" mnemonicParsing="false" onAction="#nextMonthSwitch" prefHeight="31.0" prefWidth="90.0" text="Next" />
                </children>
             </AnchorPane>
          </children>

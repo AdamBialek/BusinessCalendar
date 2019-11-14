@@ -1,10 +1,7 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.Article;
-import com.businesscalendar.NewsType;
 import com.businesscalendar.Weather;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,7 +9,6 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -513,6 +509,8 @@ public class MenuScreenController {
 
     private LocalDate firstDay;
 
+    private Month thisMonth;
+
     @FXML
     private Label calendarMonthLabel;
 
@@ -543,7 +541,7 @@ public class MenuScreenController {
         }
     }
 
-    public void setDatesToDisplay(int daysMonth, int thisYear, Month month, int weekdayAtStartOfMonth){
+    public void setDatesToDisplay(int daysMonth, Month month, int weekdayAtStartOfMonth){
         for(int i=0; i<weekdayAtStartOfMonth-1; i++){
             disableButton(i,true);
         }
@@ -558,25 +556,34 @@ public class MenuScreenController {
         for (int i=weekdayAtStartOfMonth+daysMonth-1;i<42;i++){
             disableButton(i,true);
         }
-        calendarMonthLabel.setText(month.toString());
+        calendarMonthLabel.setText(thisMonth.toString()+"\n"+todayDate.getYear());
 
     }
 
     @FXML
-    public void prevMonthSwitch(){}
+    public void prevMonthSwitch(){
+        thisMonth=thisMonth.minus(1);
+        todayDate=todayDate.minusMonths(1);
+        setCalendarDaysGridPane();
+    }
 
     @FXML
-    public void nextMonthSwitch(){}
+    public void nextMonthSwitch(){
+        thisMonth = thisMonth.plus(1);
+        todayDate=todayDate.plusMonths(1);
+        setCalendarDaysGridPane();
+    }
 
     @FXML
     public void setCalendarDaysGridPane(){
         int thisYear = todayDate.getYear();
-        Month thisMonth = todayDate.getMonth();
+
+        firstDay = LocalDate.of(thisYear,thisMonth,1);
         boolean leapYear = todayDate.isLeapYear();
-        LocalDate firstDay = LocalDate.of(thisYear,thisMonth,1);
+        int daysMonth = thisMonth.length(leapYear);
         DayOfWeek firstOfMonth =firstDay.getDayOfWeek();
         int weekdayAtStartOfMonth=firstOfMonth.getValue();
-        int daysMonth = thisMonth.length(leapYear);
+        setDatesToDisplay(daysMonth,thisMonth,weekdayAtStartOfMonth);
     }
 
     @FXML
@@ -585,152 +592,10 @@ public class MenuScreenController {
         getHeadlines();
         number1=new BigDecimal(0);
 //        *********KALENDARZ************:
-//        List<Button> buttonsList = new LinkedList<>();
-//        buttonsList.addAll(Arrays.asList(dayCard0,dayCard1,dayCard2,dayCard3,dayCard4,dayCard5,dayCard6,dayCard6,dayCard7,dayCard8,dayCard9,dayCard10,dayCard11,dayCard11,dayCard12,dayCard13,dayCard13,dayCard14,dayCard14,dayCard15,dayCard16,dayCard16,dayCard17,dayCard18,dayCard18,dayCard19,dayCard20,dayCard21,dayCard22));
-        todayDate = LocalDate.now();
-        int thisYear = todayDate.getYear();
-        Month thisMonth = todayDate.getMonth();
-        firstDay = LocalDate.of(thisYear,thisMonth,1);
-        boolean leapYear = todayDate.isLeapYear();
-        int daysMonth = thisMonth.length(leapYear);
-        DayOfWeek firstOfMonth =firstDay.getDayOfWeek();
-        int weekdayAtStartOfMonth=firstOfMonth.getValue();
-//        ObservableList<Node> nodes;
-//        nodes = calendarDaysGridPane.getChildren();
-        setDatesToDisplay(daysMonth,thisYear,thisMonth,weekdayAtStartOfMonth);
-//        for (Node n: nodes
-//             ) {
-//            if(n instanceof Button){
-//                if(((Button) n).getId().equals("dayCard15")){
-//                    ((Button) n).setText(todayDate.toString());
-//                }
-//            }
-//        }
+           todayDate=LocalDate.now();
+        thisMonth=todayDate.getMonth();
+        setCalendarDaysGridPane();
+
     }
 
-//    @FXML
-//    private Button dayCard0;
-//
-//    @FXML
-//    private Button dayCard1;
-//
-//    @FXML
-//    private Button dayCard2;
-//
-//    @FXML
-//    private Button dayCard3;
-//
-//    @FXML
-//    private Button dayCard4;
-//
-//    @FXML
-//    private Button dayCard5;
-//
-//    @FXML
-//    private Button dayCard6;
-//
-//    @FXML
-//    private Button dayCard7;
-//
-//    @FXML
-//    private Button dayCard8;
-//
-//    @FXML
-//    private Button dayCard9;
-//
-//    @FXML
-//    private Button dayCard10;
-//
-//    @FXML
-//    private Button dayCard11;
-//
-//    @FXML
-//    private Button dayCard12;
-//
-//    @FXML
-//    private Button dayCard13;
-//
-//    @FXML
-//    private Button dayCard14;
-//
-//    @FXML
-//    private Button dayCard15;
-//
-//    @FXML
-//    private Button dayCard16;
-//
-//    @FXML
-//    private Button dayCard17;
-//
-//    @FXML
-//    private Button dayCard18;
-//
-//    @FXML
-//    private Button dayCard19;
-//
-//    @FXML
-//    private Button dayCard20;
-//
-//    @FXML
-//    private Button dayCard21;
-//
-//    @FXML
-//    private Button dayCard22;
-//
-//    @FXML
-//    private Button dayCard23;
-//
-//    @FXML
-//    private Button dayCard24;
-//
-//    @FXML
-//    private Button dayCard25;
-//
-//    @FXML
-//    private Button dayCard26;
-//
-//    @FXML
-//    private Button dayCard27;
-//
-//    @FXML
-//    private Button dayCard28;
-//
-//    @FXML
-//    private Button dayCard29;
-//
-//    @FXML
-//    private Button dayCard30;
-//
-//    @FXML
-//    private Button dayCard31;
-//
-//    @FXML
-//    private Button dayCard32;
-//
-//    @FXML
-//    private Button dayCard33;
-//
-//    @FXML
-//    private Button dayCard34;
-//
-//    @FXML
-//    private Button dayCard35;
-//
-//    @FXML
-//    private Button dayCard36;
-//
-//    @FXML
-//    private Button dayCard37;
-//
-//    @FXML
-//    private Button dayCard38;
-//
-//    @FXML
-//    private Button dayCard39;
-//
-//    @FXML
-//    private Button dayCard40;
-//
-//    @FXML
-//    private Button dayCard41;
 }
