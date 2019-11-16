@@ -15,8 +15,6 @@ public class LoginScreenController {
 
     private Connection connection;
 
-    private Login login;
-
     private MainScreenController mainScreenController;
 
     private CRUD crud;
@@ -53,6 +51,5 @@ public class LoginScreenController {
     public void initialize() {
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
-        login=new Login();
     }
 }

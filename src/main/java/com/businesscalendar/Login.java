@@ -4,6 +4,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login {
+
+        private final int userID;
+
+        public Login(int userID){
+            this.userID=userID;
+        }
+
+    public int getUserID() {
+        return userID;
+    }
+
     public static boolean checkLoginOrPassword(String login){
         String regex = "[A-Z]{1,}";
         String regex2 = "[0-9]{1,}";

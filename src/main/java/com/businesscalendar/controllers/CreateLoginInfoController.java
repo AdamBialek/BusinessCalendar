@@ -66,6 +66,5 @@ public class CreateLoginInfoController {
     public void initialize(){
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
-        login = new Login();
     }
 }

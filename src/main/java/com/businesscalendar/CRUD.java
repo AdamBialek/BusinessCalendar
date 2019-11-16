@@ -1,5 +1,7 @@
 package com.businesscalendar;
 
+import com.businesscalendar.controllers.MenuScreenController;
+
 import java.sql.*;
 
 public class CRUD {
@@ -47,10 +49,15 @@ public class CRUD {
         boolean checkPass = false;
         boolean result = false;
 
+        int id=1;
 
         while (rs.next()){
             counter++;
             for(int i=1;i<=columnCount; i++){
+
+                id =(rs.getInt("UserID"));
+                MenuScreenController menuScreenController = new MenuScreenController();
+
                 if(rsmd.getColumnName(i).equals("Login")){
                     if(rs.getString(i).equals(login)){
                         checkLogin = true;
