@@ -2,12 +2,15 @@ package com.businesscalendar.controllers;
 
 import com.businesscalendar.Article;
 import com.businesscalendar.Weather;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -505,6 +508,8 @@ public class MenuScreenController {
 
     //*****************************WSZYSTKO DLA KALENDARZA*********************************:
 
+    private LocalDate noteDate;
+
     private LocalDate todayDate;
 
     private LocalDate firstDay;
@@ -547,17 +552,13 @@ public class MenuScreenController {
         }
         int day=0;
         for(int i=weekdayAtStartOfMonth-1; i<daysMonth+weekdayAtStartOfMonth;i++){
-
-
             day++;
             setButtonText(i,day);
-
         }
         for (int i=weekdayAtStartOfMonth+daysMonth-1;i<42;i++){
             disableButton(i,true);
         }
         calendarMonthLabel.setText(thisMonth.toString()+"\n"+todayDate.getYear());
-
     }
 
     @FXML
@@ -573,6 +574,21 @@ public class MenuScreenController {
         todayDate=todayDate.plusMonths(1);
         setCalendarDaysGridPane();
     }
+
+    @FXML
+    public void onDateClick(){
+
+        for(Node n : calendarDaysGridPane.getChildren()){
+            if(n instanceof Button){
+                if(((Button)n).isPressed()){
+                    String day=((Button)n).getText();
+                    noteDate = LocalDate.of(todayDate.getYear(),todayDate.getMonth(),Integer.valueOf(day));
+                }
+            }
+        }
+    }
+
+
 
     @FXML
     public void setCalendarDaysGridPane(){
@@ -595,7 +611,6 @@ public class MenuScreenController {
            todayDate=LocalDate.now();
         thisMonth=todayDate.getMonth();
         setCalendarDaysGridPane();
-
     }
 
 }
