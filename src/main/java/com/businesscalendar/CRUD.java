@@ -4,6 +4,8 @@ import com.businesscalendar.controllers.LoginScreenController;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CRUD {
 
@@ -88,11 +90,15 @@ public class CRUD {
 
 //    *********************WSZYSTKO DLA NOTATEK***************************:
 
+    private Note note;
+
     public void addNote(String note, LocalDate noteDate, int userID) throws SQLException {
         Statement statement = connection.createStatement();
         String insert = new StringBuilder("INSERT INTO notes (Note, Date, UserID)\nVALUES ('").append(note+"','"+noteDate+"','"+userID+"')").toString();
         statement.executeUpdate(insert);
     }
+
+    List<Note> notes = new LinkedList<>();
 
     public void getNotesById() throws SQLException {
         Statement statement = connection.createStatement();
@@ -103,5 +109,15 @@ public class CRUD {
         ResultSet rs = statement.executeQuery(select);
 
         ResultSetMetaData rsmd = rs.getMetaData();
+
+        while (rs.next()){
+            int noteId = rs.getInt("NoteID");
+            String note = rs.getString("Note");
+            Date date = rs.getDate("Date");
+            int userId = rs.getInt("UserID");
+            Note noteObject = new Note(noteId, note, date.toLocalDate(), userId);
+            notes.add(noteObject);
+        }
+        loginData.setNoteList(notes);
     }
 }

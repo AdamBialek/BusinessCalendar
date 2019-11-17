@@ -6,9 +6,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.ChooseScreenController">
    <children>
       <Button layoutX="111.0" layoutY="220.0" mnemonicParsing="false" onAction="#addNote" prefHeight="137.0" prefWidth="177.0" text="Add New Note" />
-      <Button disable="true" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#previousNote" text="Previous" />
-      <Button layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#nextNote" prefHeight="31.0" prefWidth="76.0" text="Next" />
-      <Button layoutX="111.0" layoutY="33.0" mnemonicParsing="false" onAction="#enterNote" prefHeight="137.0" prefWidth="177.0" text="Note Text" />
+      <Button fx:id="prevButton" disable="true" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#previousNote" text="Previous" />
+      <Button fx:id="nextButton" layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#nextNote" prefHeight="31.0" prefWidth="76.0" text="Next" />
+      <Button fx:id="noteText" layoutX="111.0" layoutY="33.0" mnemonicParsing="false" onAction="#enterNote" prefHeight="137.0" prefWidth="177.0" text="Note Text" />
       <Button layoutX="14.0" layoutY="326.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package com.businesscalendar;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +10,36 @@ public class Login {
     private static int userID;
 
     private static LocalDate localDate;
+
+    private static List<Note> noteList;
+
+    private static List<Note> notesOfDay;
+
+    private static int noteId;
+
+    public List<Note> getNotesOfDay() {
+        return notesOfDay;
+    }
+
+    public void setNotesOfDay(List<Note> notesOfDay) {
+        Login.notesOfDay = notesOfDay;
+    }
+
+    public int getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(int noteId) {
+        Login.noteId = noteId;
+    }
+
+    public List<Note> getNoteList() {
+        return noteList;
+    }
+
+    public void setNoteList(List<Note> noteList) {
+        Login.noteList = noteList;
+    }
 
     public LocalDate getLocalDate() {
         return localDate;

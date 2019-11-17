@@ -2,6 +2,7 @@ package com.businesscalendar.controllers;
 
 import com.businesscalendar.Article;
 import com.businesscalendar.Login;
+import com.businesscalendar.Note;
 import com.businesscalendar.Weather;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -592,6 +593,14 @@ public class MenuScreenController {
                     noteDate = LocalDate.of(todayDate.getYear(),todayDate.getMonth(),Integer.valueOf(day));
                     Login login = new Login();
                     login.setLocalDate(noteDate);
+                    List<Note> dayList = new LinkedList<>();
+                    for (Note note: login.getNoteList()
+                         ) {
+                        if(note.getDate().equals(login.getLocalDate())){
+                            dayList.add(note);
+                        }
+                    }
+                    login.setNotesOfDay(dayList);
                     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
                     ChooseScreenController chooseScreenController = fxmlLoader.getController();

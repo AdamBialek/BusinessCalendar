@@ -1,9 +1,12 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.CRUD;
+import com.businesscalendar.Login;
+import com.businesscalendar.Note;
 import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import java.io.IOException;
@@ -17,15 +20,57 @@ public class ChooseScreenController {
 
     private CRUD crud;
 
+    private Login login;
+
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
 
     @FXML
-    public void previousNote() {}
+    private Button noteText;
 
     @FXML
-    public void nextNote() {}
+    private Button prevButton;
+
+    @FXML
+    private Button nextButton;
+
+    @FXML
+    public void previousNote() {
+        for (int i=login.getNotesOfDay().size()-1; i>0;i--){
+            if(login.getNoteId()==login.getNotesOfDay().get(i).getNoteID()){
+                i=i-1;
+                noteText.setText(String.valueOf(i+1)+". "+login.getNotesOfDay().get(i).getNote());
+                login.setNoteId(login.getNotesOfDay().get(i).getNoteID());
+                nextButton.setDisable(false);
+                if(i==0){
+                    prevButton.setDisable(true);
+                }
+                break;
+            }
+
+        }
+    }
+
+    @FXML
+    public void nextNote() {
+
+        for (Note n: login.getNotesOfDay()
+             ) {
+            if(n.getNoteID()>login.getNoteId()){
+                int number=Integer.valueOf(noteText.getText().substring(0,1));
+                number=number+1;
+                noteText.setText(number+". "+n.getNote());
+                login.setNoteId(n.getNoteID());
+                int size = login.getNotesOfDay().size()-1;
+                prevButton.setDisable(false);
+                if(login.getNotesOfDay().get(size).getNoteID()==login.getNoteId()){
+                    nextButton.setDisable(true);
+                }
+                break;
+            }
+        }
+    }
 
     @FXML
     public void enterNote() throws IOException {
@@ -58,5 +103,18 @@ public class ChooseScreenController {
     public void initialize() {
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
+        login=new Login();
+        if(login.getNotesOfDay().size()>0){
+            Note initial=login.getNotesOfDay().get(0);
+            login.setNoteId(initial.getNoteID());
+            noteText.setText("1. "+initial.getNote());
+            if(login.getNotesOfDay().size()==1){
+                nextButton.setDisable(true);
+            }
+        } else {
+            noteText.setText("No notes for this day");
+            noteText.setDisable(true);
+            nextButton.setDisable(true);
+        }
     }
 }
