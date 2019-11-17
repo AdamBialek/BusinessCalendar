@@ -18,8 +18,8 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
         FlowPane flowPane = fxmlLoader.load();
 
-        flowPane.setPrefHeight(245);
-        flowPane.setPrefWidth(307);
+        flowPane.setPrefHeight(640);
+        flowPane.setPrefWidth(960);
 
 //        primaryStage.setMinWidth(250);
 //        primaryStage.setMinHeight(250);

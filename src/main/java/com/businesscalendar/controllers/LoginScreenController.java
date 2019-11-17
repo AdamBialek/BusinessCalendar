@@ -1,7 +1,6 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.CRUD;
-import com.businesscalendar.Login;
 import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +41,8 @@ public class LoginScreenController {
         if(check){
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
             FlowPane anchorPane = fxmlLoader.load();
+            MenuScreenController menuScreenController = fxmlLoader.getController();
+            menuScreenController.setMainScreenController(mainScreenController);
             mainScreenController.setScreen(anchorPane);
         } else {
         }

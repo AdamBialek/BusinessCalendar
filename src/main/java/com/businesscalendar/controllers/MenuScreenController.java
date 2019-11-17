@@ -4,11 +4,14 @@ import com.businesscalendar.Article;
 import com.businesscalendar.Login;
 import com.businesscalendar.Weather;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -21,6 +24,12 @@ import java.util.*;
 
 
 public class MenuScreenController {
+
+    private MainScreenController mainScreenController;
+
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
+    }
 
     //*****************************WSZYSTKO DLA NEWSÓW*********************************:
 
@@ -574,14 +583,17 @@ public class MenuScreenController {
     }
 
     @FXML
-    public void onDateClick(){
+    public void onDateClick() throws IOException {
         for(Node n : calendarDaysGridPane.getChildren()){
             if(n instanceof Button){
                 if(((Button)n).isPressed()){
                     String day=((Button)n).getText();
                     noteDate = LocalDate.of(todayDate.getYear(),todayDate.getMonth(),Integer.valueOf(day));
-                    System.out.println(noteDate);
-                    System.out.println();
+                    FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    ChooseScreenController chooseScreenController = fxmlLoader.getController();
+                    chooseScreenController.setMainScreenController(mainScreenController);
+                    mainScreenController.setScreen(anchorPane);
                 }
             }
         }
