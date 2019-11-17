@@ -35,6 +35,7 @@ public class LoginScreenController {
 
     @FXML
     private void attemptLogin() throws IOException, SQLException {
+
         String loginToCheck = loginContent.getText();
         String passToCheck = passwordContent.getText();
         boolean check = crud.loginExist(loginToCheck, passToCheck);

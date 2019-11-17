@@ -1,14 +1,17 @@
 package com.businesscalendar;
 
-import com.businesscalendar.controllers.MenuScreenController;
+import com.businesscalendar.controllers.LoginScreenController;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class CRUD {
 
     Connection connection;
 
     public CRUD(Connection connection){this.connection=connection;}
+
+//    *************WSZYSTKO DLA UŻYTKOWNIKÓW***************:
 
     public int loginAvailability(String string) throws SQLException {
         Statement statement = connection.createStatement();
@@ -33,6 +36,8 @@ public class CRUD {
         statement.executeUpdate(insert);
     }
 
+    Login loginData = new Login();
+
     public boolean loginExist(String login,String password) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -49,14 +54,16 @@ public class CRUD {
         boolean checkPass = false;
         boolean result = false;
 
-        int id=1;
+        int id;
+//        LoginScreenController loginScreenController=new LoginScreenController();
+
 
         while (rs.next()){
             counter++;
             for(int i=1;i<=columnCount; i++){
 
                 id =(rs.getInt("UserID"));
-                MenuScreenController menuScreenController = new MenuScreenController();
+                loginData.setUserID((id));
 
                 if(rsmd.getColumnName(i).equals("Login")){
                     if(rs.getString(i).equals(login)){
@@ -77,5 +84,24 @@ public class CRUD {
             result=true;
         }
         return result;
+    }
+
+//    *********************WSZYSTKO DLA NOTATEK***************************:
+
+    public void addNote(String note, LocalDate noteDate, int userID) throws SQLException {
+        Statement statement = connection.createStatement();
+        String insert = new StringBuilder("INSERT INTO notes (Note, Date, UserID)\nVALUES ('").append(note+"','"+noteDate+"','"+userID+"')").toString();
+        statement.executeUpdate(insert);
+    }
+
+    public void getNotesById() throws SQLException {
+        Statement statement = connection.createStatement();
+
+        int userID = loginData.getUserID();
+        String select = new StringBuilder("SELECT * FROM notes WHERE UserID='").append(userID+"'").toString();
+
+        ResultSet rs = statement.executeQuery(select);
+
+        ResultSetMetaData rsmd = rs.getMetaData();
     }
 }

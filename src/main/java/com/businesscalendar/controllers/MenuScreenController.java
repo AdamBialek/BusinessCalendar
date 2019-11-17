@@ -584,11 +584,14 @@ public class MenuScreenController {
 
     @FXML
     public void onDateClick() throws IOException {
+
         for(Node n : calendarDaysGridPane.getChildren()){
             if(n instanceof Button){
                 if(((Button)n).isPressed()){
                     String day=((Button)n).getText();
                     noteDate = LocalDate.of(todayDate.getYear(),todayDate.getMonth(),Integer.valueOf(day));
+                    Login login = new Login();
+                    login.setLocalDate(noteDate);
                     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
                     ChooseScreenController chooseScreenController = fxmlLoader.getController();

@@ -1,18 +1,29 @@
 package com.businesscalendar;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login {
 
-        private final int userID;
+    private static int userID;
 
-        public Login(int userID){
-            this.userID=userID;
-        }
+    private static LocalDate localDate;
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        Login.localDate = localDate;
+    }
 
     public int getUserID() {
         return userID;
+    }
+
+    public void setUserID(int userID) {
+        Login.userID = userID;
     }
 
     public static boolean checkLoginOrPassword(String login){
