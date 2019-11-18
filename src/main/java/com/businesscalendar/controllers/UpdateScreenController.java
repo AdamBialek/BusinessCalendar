@@ -57,6 +57,15 @@ public class UpdateScreenController {
     }
 
     @FXML
+    public void goBack() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        ChooseScreenController chooseScreenController = fxmlLoader.getController();
+        chooseScreenController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
+    }
+
+    @FXML
     public void initialize(){
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);

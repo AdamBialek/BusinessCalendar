@@ -12,6 +12,6 @@
       <Button layoutX="827.0" layoutY="585.0" mnemonicParsing="false" onAction="#updateNote" text="Update" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="64.0" />
       <Label layoutX="451.0" layoutY="310.0" text="UPDATE:" />
       <TextArea fx:id="displayText" editable="false" layoutX="15.0" layoutY="59.0" prefHeight="219.0" prefWidth="930.0" wrapText="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-      <Button layoutX="709.0" layoutY="585.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="709.0" layoutY="585.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>
