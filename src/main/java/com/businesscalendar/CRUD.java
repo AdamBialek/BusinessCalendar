@@ -1,7 +1,5 @@
 package com.businesscalendar;
 
-import com.businesscalendar.controllers.LoginScreenController;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -89,8 +87,6 @@ public class CRUD {
     }
 
 //    *********************WSZYSTKO DLA NOTATEK***************************:
-
-    private Note note;
 
     public void addNote(String note, LocalDate noteDate, int userID) throws SQLException {
         Statement statement = connection.createStatement();
