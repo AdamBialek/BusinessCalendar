@@ -11,6 +11,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ChooseScreenController {
 
@@ -87,6 +90,30 @@ public class ChooseScreenController {
         AnchorPane anchorPane = fxmlLoader.load();
         NoteScreenController noteScreenController = fxmlLoader.getController();
         noteScreenController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
+    }
+
+    @FXML
+    public void deleteNote() throws SQLException, IOException {
+        prevButton.setDisable(true);
+        nextButton.setDisable(true);
+        int noteId = login.getNoteId();
+        crud.deleteNote(noteId);
+        crud.getNotesById();
+        List<Note> dayList = new LinkedList<>();
+        Login login = new Login();
+        for (Note note: login.getNoteList()
+        ) {
+            if(note.getDate().equals(login.getLocalDate())){
+                dayList.add(note);
+            }
+        }
+        login.setNotesOfDay(dayList);
+        login.getNotesOfDay();
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        ChooseScreenController chooseScreenController = fxmlLoader.getController();
+        chooseScreenController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(anchorPane);
     }
 

@@ -126,4 +126,10 @@ public class CRUD {
         String update = new StringBuilder("UPDATE notes\nSET Note='").append(updatedText+"'\nWHERE NoteID='"+noteId+"'").toString();
         statement.executeUpdate(update);
     }
+
+    public void deleteNote(int noteId) throws SQLException {
+        Statement statement = connection.createStatement();
+        String update = new StringBuilder("DELETE FROM notes WHERE NoteID='").append(noteId+"'").toString();
+        statement.executeUpdate(update);
+    }
 }
