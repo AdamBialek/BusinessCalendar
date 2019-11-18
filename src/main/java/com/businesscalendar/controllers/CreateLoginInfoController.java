@@ -51,8 +51,12 @@ public class CreateLoginInfoController {
                 boolean passOK = login.checkLoginOrPassword(password);
                 if(passOK){
                     crud.addLoginPass(loginToCheck,password);
+                    crud.loginExist(loginToCheck,password);
+                    crud.getNotesById();
                     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
                     FlowPane anchorPane = fxmlLoader.load();
+                    MenuScreenController menuScreenController = fxmlLoader.getController();
+                    menuScreenController.setMainScreenController(mainScreenController);
                     mainScreenController.setScreen(anchorPane);
                 }
             }
