@@ -120,4 +120,10 @@ public class CRUD {
         }
         loginData.setNoteList(notes);
     }
+
+    public void updateNote(String updatedText, int noteId) throws SQLException {
+        Statement statement = connection.createStatement();
+        String update = new StringBuilder("UPDATE notes\nSET Note='").append(updatedText+"'\nWHERE NoteID='"+noteId+"'").toString();
+        statement.executeUpdate(update);
+    }
 }

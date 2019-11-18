@@ -74,10 +74,10 @@ public class ChooseScreenController {
 
     @FXML
     public void enterNote() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/NoteScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/UpdateScreen.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
-        NoteScreenController noteScreenController = fxmlLoader.getController();
-        noteScreenController.setMainScreenController(mainScreenController);
+        UpdateScreenController updateScreenController = fxmlLoader.getController();
+        updateScreenController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(anchorPane);
     }
 
