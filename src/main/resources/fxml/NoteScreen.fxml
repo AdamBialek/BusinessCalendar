@@ -4,10 +4,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.NoteScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.NoteScreenController">
    <children>
-      <TextArea fx:id="textContext" layoutX="15.0" layoutY="15.0" prefHeight="315.0" prefWidth="570.0" wrapText="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
-      <Button layoutX="493.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveNote" text="Save" AnchorPane.bottomAnchor="15.0" />
-      <Button layoutX="410.0" layoutY="347.0" mnemonicParsing="false" onAction="#goBack" text="Back" AnchorPane.bottomAnchor="15.0" />
+      <TextArea fx:id="textContext" layoutX="15.0" layoutY="74.0" prefHeight="315.0" prefWidth="570.0" wrapText="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <Button layoutX="826.0" layoutY="563.0" mnemonicParsing="false" onAction="#saveNote" text="Save" AnchorPane.bottomAnchor="46.0" />
+      <Button layoutX="726.0" layoutY="563.0" mnemonicParsing="false" onAction="#goBack" text="Back" AnchorPane.bottomAnchor="46.0" />
    </children>
 </AnchorPane>

@@ -5,14 +5,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.CreateLoginInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.CreateLoginInfoController">
     <children>
-        <Label layoutX="48.0" layoutY="55.0" text="Set a Login Name" AnchorPane.leftAnchor="50.0" />
-        <TextField fx:id="createPassword" layoutX="48.0" layoutY="181.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-        <Label layoutX="49.0" layoutY="151.0" prefHeight="21.0" prefWidth="106.0" text="Set a Password" AnchorPane.leftAnchor="50.0" />
-        <TextField fx:id="createLogin" layoutX="48.0" layoutY="88.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-        <Button layoutX="50.0" layoutY="355.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="50.0" />
-        <Button layoutX="183.0" layoutY="355.0" mnemonicParsing="false" onAction="#attemptToRegister" text="Register" AnchorPane.rightAnchor="50.0" />
-      <Label layoutX="33.0" layoutY="233.0" prefHeight="102.0" prefWidth="241.0" text="At least 1 number, 1 upper case and 1 lower case letter. Between 8-15 characters. Login and password can't match." textAlignment="CENTER" wrapText="true" />
+      <AnchorPane layoutX="327.0" layoutY="102.0" prefHeight="436.0" prefWidth="307.0">
+         <children>
+              <Label layoutX="42.0" layoutY="46.0" text="Set a Login Name" AnchorPane.leftAnchor="42.0" />
+              <TextField fx:id="createPassword" layoutX="42.0" layoutY="157.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
+              <Label layoutX="42.0" layoutY="129.0" prefHeight="21.0" prefWidth="106.0" text="Set a Password" AnchorPane.leftAnchor="42.0" />
+              <TextField fx:id="createLogin" layoutX="42.0" layoutY="74.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
+              <Button layoutX="42.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="42.0" />
+              <Button layoutX="175.0" layoutY="360.0" mnemonicParsing="false" onAction="#attemptToRegister" text="Register" AnchorPane.rightAnchor="58.0" />
+            <Label layoutX="42.0" layoutY="218.0" prefHeight="111.0" prefWidth="207.0" text="At least 1 number, 1 upper case and 1 lower case letter. Between 8-15 characters. No spaces. Login and password can't match." textAlignment="JUSTIFY" wrapText="true" />
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
