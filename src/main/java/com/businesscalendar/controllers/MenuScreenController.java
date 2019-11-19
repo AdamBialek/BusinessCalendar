@@ -347,9 +347,6 @@ public class MenuScreenController {
     }
 
     @FXML
-    public void buttonPercentage() {}
-
-    @FXML
     public void buttonBackspace() {
         calculatorScreen.setText(calculator.erase());
     }
@@ -495,7 +492,6 @@ public class MenuScreenController {
     void initialize() {
         article1 = new Article();
         getHeadlines();
-
 //        *********POGODA*********:
         weather=new Weather();
 //        *********KALKULATOR***********:

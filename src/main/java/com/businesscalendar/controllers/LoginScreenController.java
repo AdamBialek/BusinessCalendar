@@ -35,10 +35,7 @@ public class LoginScreenController {
 
     @FXML
     private void attemptLogin() throws IOException, SQLException {
-
-        String loginToCheck = loginContent.getText();
-        String passToCheck = passwordContent.getText();
-        boolean check = crud.loginExist(loginToCheck, passToCheck);
+        boolean check = crud.loginExist(loginContent.getText(), passwordContent.getText());
         crud.getNotesById();
         if(check){
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
