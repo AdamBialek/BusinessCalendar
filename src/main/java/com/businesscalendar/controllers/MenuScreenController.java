@@ -382,13 +382,7 @@ public class MenuScreenController {
 
     //*****************************WSZYSTKO DLA KALENDARZA*********************************:
 
-    private LocalDate noteDate;
-
-    private LocalDate todayDate;
-
-    private LocalDate firstDay;
-
-    private Month thisMonth;
+    private Note note;
 
     @FXML
     private Label calendarMonthLabel;
@@ -396,96 +390,55 @@ public class MenuScreenController {
     @FXML
     private GridPane calendarDaysGridPane;
 
+    public GridPane getCalendarDaysGridPane() {
+        return calendarDaysGridPane;
+    }
+
+    public void setCalendarDaysGridPane(GridPane calendarDaysGridPane) {
+        this.calendarDaysGridPane = calendarDaysGridPane;
+    }
+
     public void disableButton(int buttonNo, boolean choice){
-        String idToCompare = new StringBuilder("dayCard").append(buttonNo).toString();
-        for(Node n : calendarDaysGridPane.getChildren()){
-            if(n instanceof Button){
-                if(((Button)n).getId().equals(idToCompare)){
-                    ((Button)n).setText("");
-                    ((Button)n).setDisable(choice);
-                }
-            }
-        }
+        setCalendarDaysGridPane(note.disable(buttonNo,choice,getCalendarDaysGridPane()));
+
     }
 
     public void setButtonText(int buttonNo, int day){
-        String idToCompare = new StringBuilder("dayCard").append(buttonNo).toString();
-        for(Node n : calendarDaysGridPane.getChildren()){
-            if(n instanceof Button){
-                if(((Button)n).getId().equals(idToCompare)){
-                    ((Button)n).setDisable(false);
-                    ((Button)n).setText(String.valueOf(day));
-                }
-            }
-        }
+        setCalendarDaysGridPane(note.setBtnTxt(buttonNo,day,getCalendarDaysGridPane()));
     }
 
     public void setDatesToDisplay(int daysMonth, Month month, int weekdayAtStartOfMonth){
-        for(int i=0; i<weekdayAtStartOfMonth-1; i++){
-            disableButton(i,true);
-        }
-        int day=0;
-        for(int i=weekdayAtStartOfMonth-1; i<daysMonth+weekdayAtStartOfMonth;i++){
-            day++;
-            setButtonText(i,day);
-        }
-        for (int i=weekdayAtStartOfMonth+daysMonth-1;i<42;i++){
-            disableButton(i,true);
-        }
-        calendarMonthLabel.setText(thisMonth.toString()+"\n"+todayDate.getYear());
+        setCalendarDaysGridPane(note.setDatesToWindows(daysMonth,month,weekdayAtStartOfMonth,getCalendarDaysGridPane()));
+        calendarMonthLabel.setText(note.getThisMonth().toString()+"\n"+note.getTodayDate().toString());
     }
 
     @FXML
     public void prevMonthSwitch(){
-        thisMonth=thisMonth.minus(1);
-        todayDate=todayDate.minusMonths(1);
-        setCalendarDaysGridPane();
+        note.previous();
+        setCalendarDaysGridPaneContent();
     }
 
     @FXML
     public void nextMonthSwitch(){
-        thisMonth = thisMonth.plus(1);
-        todayDate=todayDate.plusMonths(1);
-        setCalendarDaysGridPane();
+        note.next();
+        setCalendarDaysGridPaneContent();
     }
 
     @FXML
     public void onDateClick() throws IOException {
-
-        for(Node n : calendarDaysGridPane.getChildren()){
-            if(n instanceof Button){
-                if(((Button)n).isPressed()){
-                    String day=((Button)n).getText();
-                    noteDate = LocalDate.of(todayDate.getYear(),todayDate.getMonth(),Integer.valueOf(day));
-                    Login login = new Login();
-                    login.setLocalDate(noteDate);
-                    List<Note> dayList = new LinkedList<>();
-                    for (Note note: login.getNoteList()
-                         ) {
-                        if(note.getDate().equals(login.getLocalDate())){
-                            dayList.add(note);
-                        }
-                    }
-                    login.setNotesOfDay(dayList);
-                    FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
-                    ChooseScreenController chooseScreenController = fxmlLoader.getController();
-                    chooseScreenController.setMainScreenController(mainScreenController);
-                    mainScreenController.setScreen(anchorPane);
-                }
-            }
-        }
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
+        FXMLLoader loader = note.onClick(getCalendarDaysGridPane(),fxmlLoader);
+        AnchorPane anchorPane = fxmlLoader.load();
+        ChooseScreenController chooseScreenController = fxmlLoader.getController();
+        chooseScreenController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
     }
 
     @FXML
-    public void setCalendarDaysGridPane(){
-        int thisYear = todayDate.getYear();
-        firstDay = LocalDate.of(thisYear,thisMonth,1);
-        boolean leapYear = todayDate.isLeapYear();
-        int daysMonth = thisMonth.length(leapYear);
-        DayOfWeek firstOfMonth =firstDay.getDayOfWeek();
-        int weekdayAtStartOfMonth=firstOfMonth.getValue();
-        setDatesToDisplay(daysMonth,thisMonth,weekdayAtStartOfMonth);
+    public void setCalendarDaysGridPaneContent(){
+        GridPane gridPane=note.setDatesToDisplayInWindows(getCalendarDaysGridPane());
+        setCalendarDaysGridPane(note.setDatesToWindows(note.getDaysMonth(),note.getThisMonth(),note.getWeekdayAtStartOfMonth(),gridPane));
+        calendarMonthLabel.setText(note.getThisMonth().toString()+"\n"+note.getTodayDate().getYear());
     }
 
     @FXML
@@ -497,8 +450,10 @@ public class MenuScreenController {
 //        *********KALKULATOR***********:
         calculator=new Calculator();
 //        *********KALENDARZ************:
-        todayDate=LocalDate.now();
-        thisMonth=todayDate.getMonth();
-        setCalendarDaysGridPane();
+        note=new Note();
+        note.setTodayDate(LocalDate.now());
+        note.setThisMonth(note.getTodayDate().getMonth());
+        System.out.println(note.getWeekdayAtStartOfMonth());
+        setCalendarDaysGridPaneContent();
     }
 }
