@@ -1,80 +1,179 @@
 package com.businesscalendar;
 
+import com.businesscalendar.controllers.MenuScreenController;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
 public class Calculator {
+
+    private MenuScreenController menuScreenController;
+
+    private String calculatorNumber1="";
+
+    private String operation="";
+
     private BigDecimal number1;
 
-    private BigDecimal number2;
-
-    private String operator;
-
-    public BigDecimal getNumber1() {
-        return number1;
+    public String getCalculatorNumber1() {
+        return calculatorNumber1;
     }
 
-    public void setNumber1(BigDecimal number1) {
-        this.number1 = number1;
+    public void setCalculatorNumber1(String calculatorNumber1) {
+        this.calculatorNumber1 = calculatorNumber1;
     }
 
-    public BigDecimal getNumber2() {
-        return number2;
+    public String assignButtonValue(int value) {
+        return calculatorNumber1=getCalculatorNumber1()+String.valueOf(value);
     }
 
-    public void setNumber2(BigDecimal number2) {
-        this.number2 = number2;
-    }
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
-    public BigDecimal calcResult(){
-        if(getOperator().equals("+")){
-            setNumber1(getNumber1().add(getNumber2()));
-            setNumber2(null);
-            setOperator(null);
-        } else if (getOperator().equals("-")){
-            setNumber1(getNumber1().subtract(getNumber2()));
-            setNumber2(null);
-            setOperator(null);
-        } else if (getOperator().equals("*")){
-            setNumber1(getNumber1().multiply(getNumber2()));
-            setNumber2(null);
-            setOperator(null);
-        } else if (getOperator().equals("/")){
-            try {
-                setNumber1(getNumber1().divide(getNumber2()));
-            } catch (ArithmeticException e) {
-                setNumber1(getNumber1().divide(getNumber2(),15, RoundingMode.HALF_DOWN));
-            }
-            setNumber2(null);
-            setOperator(null);
-        } else if (getOperator().equals("%")){
-            BigDecimal percent = BigDecimal.valueOf(100);
-            try {
-                setNumber1(getNumber1().divide(getNumber2()).multiply(percent));
-            } catch (ArithmeticException e) {
-                MathContext mathContext = new MathContext(15);
-                setNumber1(getNumber1().divide(getNumber2(),17, RoundingMode.HALF_DOWN).multiply(percent).round(mathContext));
-            }
-            setNumber2(null);
-            setOperator(null);
+    public String numberToFraction(String scrTxt) {
+        if (!getCalculatorNumber1().contains(".")){
+            return calculatorNumber1=getCalculatorNumber1()+".";
         }
-
-
-        return getNumber1();
+        return scrTxt;
     }
 
-    public void clearAllValues() {
-        setNumber1(BigDecimal.ZERO);
-        setNumber2(null);
-        setOperator(null);
+    public String addition(String scrTxt) {
+        if(operation.length()<1){
+            operation="+";
+            number1=new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            return "";
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            String calcResult=result(scrTxt);
+            operation="+";
+            setCalculatorNumber1("");
+            return calcResult;
+        }
+        return scrTxt;
+    }
+
+    public String subtraction(String scrTxt) {
+        if(operation.length()<1) {
+            operation = "-";
+            number1 = new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            return "";
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            String calcResult=result(scrTxt);
+            operation="-";
+            setCalculatorNumber1("");
+            return calcResult;
+        }
+        return scrTxt;
+    }
+
+    public String multiplication(String scrTxt) {
+        if(operation.length()<1) {
+            operation = "*";
+            number1 = new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            return "";
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            String calcResult=result(scrTxt);
+            operation="*";
+            setCalculatorNumber1("");
+            return calcResult;
+        }
+        return scrTxt;
+    }
+
+    public String division(String scrTxt) {
+        if(operation.length()<1) {
+            operation = "/";
+            number1 = new BigDecimal(getCalculatorNumber1());
+            setCalculatorNumber1("");
+            return "";
+        } else if(!operation.isEmpty()&&!calculatorNumber1.isEmpty()){
+            String calcResult=result(scrTxt);
+            operation="/";
+            setCalculatorNumber1("");
+            return calcResult;
+        }
+        return scrTxt;
+    }
+
+    public String erase() {
+        setCalculatorNumber1(getCalculatorNumber1().substring(0,calculatorNumber1.length()-1));
+        return getCalculatorNumber1();
+    }
+
+    public String negate() {
+        if (getCalculatorNumber1().lastIndexOf("-")==0){
+            setCalculatorNumber1(getCalculatorNumber1().replace("-",""));
+            return calculatorNumber1;
+        } else if(getCalculatorNumber1().lastIndexOf("-")==-1){
+            setCalculatorNumber1("-"+getCalculatorNumber1());
+            return calculatorNumber1;
+        }
+        return null;
+    }
+
+    public void clearScreen() {
+        number1=BigDecimal.ZERO;
+        calculatorNumber1="";
+        operation="";
+    }
+
+    public String equals(String calculatorScreenText) {
+        if(!getCalculatorNumber1().equals("")){
+            return result(calculatorScreenText);
+        } else {
+            setCalculatorNumber1(number1.toString());
+            number1=BigDecimal.ZERO;
+            operation="";
+            return getCalculatorNumber1();
+        }
+    }
+
+    public String result(String calculatorScreenText){
+        if (!getCalculatorNumber1().equals("")) {
+            if (operation.equals("+")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                number1 = number1.add(bigDecimal);
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+                return number1.toString();
+            } else if (operation.equals("-")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                number1 = number1.subtract(bigDecimal);
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+                return number1.toString();
+            } else if (operation.equals("*")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                number1 = number1.multiply(bigDecimal);
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+                return number1.toString();
+            } else if (operation.equals("/")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                try {
+                    number1 = number1.divide(bigDecimal);
+                } catch (ArithmeticException e) {
+                    number1 = number1.divide(bigDecimal, 15, RoundingMode.HALF_DOWN);
+                }
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+                return number1.toString();
+            } else if (operation.equals("%")) {
+                BigDecimal bigDecimal = new BigDecimal(getCalculatorNumber1());
+                BigDecimal percent = BigDecimal.valueOf(100);
+                try {
+                    number1 = number1.divide(bigDecimal).multiply(percent);
+                } catch (ArithmeticException e) {
+                    MathContext mathContext = new MathContext(15);
+                    number1 = number1.divide(bigDecimal, 17, RoundingMode.HALF_DOWN).multiply(percent).round(mathContext);
+                }
+                setCalculatorNumber1(number1.toString());
+                operation = "";
+                return number1.toString();
+            }
+        } else {
+            operation="";
+        }
+        return calculatorScreenText;
     }
 }
