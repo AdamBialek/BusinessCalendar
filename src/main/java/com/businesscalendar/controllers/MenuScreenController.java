@@ -366,12 +366,6 @@ public class MenuScreenController {
         calculatorScreen.setText(newCalcScrTxt);
     }
 
-    public void calcResult(){
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.result(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
     //*****************************WSZYSTKO DLA POGODY*********************************:
 
     private Weather weather;
