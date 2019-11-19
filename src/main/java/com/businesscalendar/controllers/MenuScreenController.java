@@ -489,6 +489,8 @@ public class MenuScreenController {
 
     //*****************************WSZYSTKO DLA POGODY*********************************:
 
+    private Weather weather;
+
     @FXML
     private Label weatherDataInput;
 
@@ -497,20 +499,9 @@ public class MenuScreenController {
 
     @FXML
     public void checkWeatherButton() {
-        if (cityName.getText().length()>0){
-            String city= cityName.getText();
-            cityName.setText("");
-            Weather weather = new Weather();
-            weather.setCity(city);
-
-            try {
-                weather.parseJson(weather.getResponse(weather.buildUrl()));
-                String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
-                weatherDataInput.setText(weatherInfo);
-            } catch (IOException e) {
-                weatherDataInput.setText("Sorry something went wrong.\nWe couldn't find such a city :(");
-            }
-        }
+        String weatherInfo=weather.getWeatherInfo(cityName.getText());
+        cityName.setText("");
+        weatherDataInput.setText(weatherInfo);
     }
 
     //*****************************WSZYSTKO DLA KALENDARZA*********************************:
@@ -626,6 +617,8 @@ public class MenuScreenController {
         article1 = new Article();
         getHeadlines();
         number1=new BigDecimal(0);
+//        *********POGODA*********:
+        weather=new Weather();
 //        *********KALENDARZ************:
         todayDate=LocalDate.now();
         thisMonth=todayDate.getMonth();

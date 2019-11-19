@@ -141,4 +141,19 @@ public class Weather implements UseApi {
 
         return null;
     }
+
+    public String getWeatherInfo(String city){
+        if (city.length()>0){
+            Weather weather = new Weather();
+            weather.setCity(city);
+            try {
+                weather.parseJson(weather.getResponse(weather.buildUrl()));
+                String weatherInfo = new StringBuilder(weather.getName()).append(" ").append(weather.getTemperature()).append("\n").append(weather.getDescription()).toString();
+                return weatherInfo;
+            } catch (IOException e) {
+                return "Sorry something went wrong.\nWe couldn't find such a city :(";
+            }
+        }
+        return "Sorry something went wrong.\nWe couldn't find such a city :(";
+    }
 }
