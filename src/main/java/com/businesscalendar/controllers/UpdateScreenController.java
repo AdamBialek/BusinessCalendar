@@ -69,7 +69,6 @@ public class UpdateScreenController {
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
         login=new Login();
-        System.out.println(login.getNoteId());
         for (Note n: login.getNotesOfDay()) {
             if(login.getNoteId()==n.getNoteID()) {
                 displayText.setText(n.getNote());
