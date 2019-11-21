@@ -3,7 +3,6 @@ package com.businesscalendar.controllers;
 import com.businesscalendar.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -11,11 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
-
 
 public class MenuScreenController {
 
@@ -34,7 +31,6 @@ public class MenuScreenController {
     private Article article3;
 
     private int articlesToDisplay;
-
 
     @FXML
     public List<Article> articleList;
@@ -85,8 +81,6 @@ public class MenuScreenController {
     @FXML
     private Hyperlink articleSpace3Link;
 
-
-
     public void setArticles(){
         setArticle1(articleList.get(0));
         setArticle2(articleList.get(1));
@@ -124,7 +118,6 @@ public class MenuScreenController {
         markLinksAsNotVisited();
         getHeadlines();
     }
-
 
     @FXML
     public void businessSwitch() {
