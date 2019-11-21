@@ -138,7 +138,6 @@ public class Weather implements UseApi {
             JSONObject weatherObject = weather.getJSONObject(0);
             description = weatherObject.getString("description");
         }
-
         return null;
     }
 

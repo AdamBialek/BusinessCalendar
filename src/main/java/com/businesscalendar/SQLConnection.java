@@ -23,6 +23,4 @@ public class SQLConnection {
     public Connection getConnection() {
         return (connection != null) ? connection : connectionToSQLServer();
     }
-
-
 }

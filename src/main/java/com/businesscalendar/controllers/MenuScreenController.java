@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 public class MenuScreenController {
@@ -20,6 +19,186 @@ public class MenuScreenController {
 
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
+    }
+
+    //*****************************WSZYSTKO DLA KALENDARZA*********************************:
+
+    private Note note;
+
+    @FXML
+    private Label calendarMonthLabel;
+
+    @FXML
+    private GridPane calendarDaysGridPane;
+
+    public GridPane getCalendarDaysGridPane() {
+        return calendarDaysGridPane;
+    }
+
+    public void setCalendarDaysGridPane(GridPane calendarDaysGridPane) {
+        this.calendarDaysGridPane = calendarDaysGridPane;
+    }
+
+    @FXML
+    public void prevMonthSwitch(){
+        note.previous();
+        setCalendarDaysGridPaneContent();
+    }
+
+    @FXML
+    public void nextMonthSwitch(){
+        note.next();
+        setCalendarDaysGridPaneContent();
+    }
+
+    @FXML
+    public void onDateClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
+        fxmlLoader = note.onClick(getCalendarDaysGridPane(),fxmlLoader);
+        AnchorPane anchorPane = fxmlLoader.load();
+        ChooseScreenController chooseScreenController = fxmlLoader.getController();
+        chooseScreenController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
+    }
+
+    @FXML
+    public void setCalendarDaysGridPaneContent(){
+        GridPane gridPane=note.setDatesToDisplayInWindows(getCalendarDaysGridPane());
+        setCalendarDaysGridPane(note.setDatesToWindows(note.getDaysMonth(),note.getThisMonth(),note.getWeekdayAtStartOfMonth(),gridPane));
+        calendarMonthLabel.setText(note.getThisMonth().toString()+"\n"+note.getTodayDate().getYear());
+    }
+
+    //*****************************WSZYSTKO DLA POGODY*********************************:
+
+    private Weather weather;
+
+    @FXML
+    private Label weatherDataInput;
+
+    @FXML
+    private TextField cityName;
+
+    @FXML
+    public void checkWeatherButton() {
+        String weatherInfo=weather.getWeatherInfo(cityName.getText());
+        cityName.setText("");
+        weatherDataInput.setText(weatherInfo);
+    }
+
+    //*****************************WSZYSTKO DLA KALKULATORA*********************************:
+
+    private Calculator calculator;
+
+    @FXML
+    private TextField calculatorScreen;
+
+    @FXML
+    public void button1() {
+        calculatorScreen.setText(calculator.assignButtonValue(1));
+    }
+
+    @FXML
+    public void button2() {
+        calculatorScreen.setText(calculator.assignButtonValue(2));
+    }
+
+    @FXML
+    public void button3() {
+        calculatorScreen.setText(calculator.assignButtonValue(3));
+    }
+
+    @FXML
+    public void button4() {
+        calculatorScreen.setText(calculator.assignButtonValue(4));
+    }
+
+    @FXML
+    public void button5() {
+        calculatorScreen.setText(calculator.assignButtonValue(5));
+    }
+
+    @FXML
+    public void button6() {
+        calculatorScreen.setText(calculator.assignButtonValue(6));
+    }
+
+    @FXML
+    public void button7() {
+        calculatorScreen.setText(calculator.assignButtonValue(7));
+    }
+
+    @FXML
+    public void button8() {
+        calculatorScreen.setText(calculator.assignButtonValue(8));
+    }
+
+    @FXML
+    public void button9() {
+        calculatorScreen.setText(calculator.assignButtonValue(9));
+    }
+
+    @FXML
+    public void button0() {
+        calculatorScreen.setText(calculator.assignButtonValue(0));
+    }
+
+    @FXML
+    public void buttonPoint() {
+        String calcScrTxt=calculatorScreen.getText();
+        String newCalcScrTxt=calculator.numberToFraction(calcScrTxt);
+        calculatorScreen.setText(newCalcScrTxt);
+    }
+
+    @FXML
+    public void buttonEquals() {
+        String calcScrTxt=calculatorScreen.getText();
+        String newCalcScrTxt=calculator.equals(calcScrTxt);
+        calculatorScreen.setText(newCalcScrTxt);
+    }
+
+    @FXML
+    public void buttonAdd() {
+        String calcScrTxt=calculatorScreen.getText();
+        String newCalcScrTxt=calculator.addition(calcScrTxt);
+        calculatorScreen.setText(newCalcScrTxt);
+    }
+
+    @FXML
+    public void buttonSubtract() {
+        String calcScrTxt=calculatorScreen.getText();
+        String newCalcScrTxt=calculator.subtraction(calcScrTxt);
+        calculatorScreen.setText(newCalcScrTxt);
+    }
+
+    @FXML
+    public void buttonMultiply() {
+        String calcScrTxt=calculatorScreen.getText();
+        String newCalcScrTxt=calculator.multiplication(calcScrTxt);
+        calculatorScreen.setText(newCalcScrTxt);
+    }
+
+    @FXML
+    public void buttonDivide() {
+        String calcScrTxt=calculatorScreen.getText();
+        String newCalcScrTxt=calculator.division(calcScrTxt);
+        calculatorScreen.setText(newCalcScrTxt);
+    }
+
+    @FXML
+    public void buttonBackspace() {
+        calculatorScreen.setText(calculator.erase());
+    }
+
+    @FXML
+    public void buttonClear() {
+        calculator.clearScreen();
+        calculatorScreen.setText("");
+    }
+
+    @FXML
+    public void plusMinus() {
+        String newCalcScrTxt=calculator.negate();
+        calculatorScreen.setText(newCalcScrTxt);
     }
 
     //*****************************WSZYSTKO DLA NEWSÓW*********************************:
@@ -240,213 +419,20 @@ public class MenuScreenController {
         }
     }
 
-    //*****************************WSZYSTKO DLA KALKULATORA*********************************:
-
-    private Calculator calculator;
-
-    @FXML
-    private TextField calculatorScreen;
-
-    @FXML
-    public void button1() {
-        calculatorScreen.setText(calculator.assignButtonValue(1));
-    }
-
-    @FXML
-    public void button2() {
-        calculatorScreen.setText(calculator.assignButtonValue(2));
-    }
-
-    @FXML
-    public void button3() {
-        calculatorScreen.setText(calculator.assignButtonValue(3));
-    }
-
-    @FXML
-    public void button4() {
-        calculatorScreen.setText(calculator.assignButtonValue(4));
-    }
-
-    @FXML
-    public void button5() {
-        calculatorScreen.setText(calculator.assignButtonValue(5));
-    }
-
-    @FXML
-    public void button6() {
-        calculatorScreen.setText(calculator.assignButtonValue(6));
-    }
-
-    @FXML
-    public void button7() {
-        calculatorScreen.setText(calculator.assignButtonValue(7));
-    }
-
-    @FXML
-    public void button8() {
-        calculatorScreen.setText(calculator.assignButtonValue(8));
-    }
-
-    @FXML
-    public void button9() {
-        calculatorScreen.setText(calculator.assignButtonValue(9));
-    }
-
-    @FXML
-    public void button0() {
-        calculatorScreen.setText(calculator.assignButtonValue(0));
-    }
-
-    @FXML
-    public void buttonPoint() {
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.numberToFraction(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    @FXML
-    public void buttonEquals() {
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.equals(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    @FXML
-    public void buttonAdd() {
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.addition(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    @FXML
-    public void buttonSubtract() {
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.subtraction(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    @FXML
-    public void buttonMultiply() {
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.multiplication(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    @FXML
-    public void buttonDivide() {
-        String calcScrTxt=calculatorScreen.getText();
-        String newCalcScrTxt=calculator.division(calcScrTxt);
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    @FXML
-    public void buttonBackspace() {
-        calculatorScreen.setText(calculator.erase());
-    }
-
-    @FXML
-    public void buttonClear() {
-        calculator.clearScreen();
-        calculatorScreen.setText("");
-    }
-
-    @FXML
-    public void plusMinus() {
-        String newCalcScrTxt=calculator.negate();
-        calculatorScreen.setText(newCalcScrTxt);
-    }
-
-    //*****************************WSZYSTKO DLA POGODY*********************************:
-
-    private Weather weather;
-
-    @FXML
-    private Label weatherDataInput;
-
-    @FXML
-    private TextField cityName;
-
-    @FXML
-    public void checkWeatherButton() {
-        String weatherInfo=weather.getWeatherInfo(cityName.getText());
-        cityName.setText("");
-        weatherDataInput.setText(weatherInfo);
-    }
-
-    //*****************************WSZYSTKO DLA KALENDARZA*********************************:
-
-    private Note note;
-
-    @FXML
-    private Label calendarMonthLabel;
-
-    @FXML
-    private GridPane calendarDaysGridPane;
-
-    public GridPane getCalendarDaysGridPane() {
-        return calendarDaysGridPane;
-    }
-
-    public void setCalendarDaysGridPane(GridPane calendarDaysGridPane) {
-        this.calendarDaysGridPane = calendarDaysGridPane;
-    }
-
-    public void disableButton(int buttonNo, boolean choice){
-        setCalendarDaysGridPane(note.disable(buttonNo,choice,getCalendarDaysGridPane()));
-
-    }
-
-    public void setButtonText(int buttonNo, int day){
-        setCalendarDaysGridPane(note.setBtnTxt(buttonNo,day,getCalendarDaysGridPane()));
-    }
-
-    public void setDatesToDisplay(int daysMonth, Month month, int weekdayAtStartOfMonth){
-        setCalendarDaysGridPane(note.setDatesToWindows(daysMonth,month,weekdayAtStartOfMonth,getCalendarDaysGridPane()));
-        calendarMonthLabel.setText(note.getThisMonth().toString()+"\n"+note.getTodayDate().toString());
-    }
-
-    @FXML
-    public void prevMonthSwitch(){
-        note.previous();
-        setCalendarDaysGridPaneContent();
-    }
-
-    @FXML
-    public void nextMonthSwitch(){
-        note.next();
-        setCalendarDaysGridPaneContent();
-    }
-
-    @FXML
-    public void onDateClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChooseScreen.fxml"));
-        FXMLLoader loader = note.onClick(getCalendarDaysGridPane(),fxmlLoader);
-        AnchorPane anchorPane = fxmlLoader.load();
-        ChooseScreenController chooseScreenController = fxmlLoader.getController();
-        chooseScreenController.setMainScreenController(mainScreenController);
-        mainScreenController.setScreen(anchorPane);
-    }
-
-    @FXML
-    public void setCalendarDaysGridPaneContent(){
-        GridPane gridPane=note.setDatesToDisplayInWindows(getCalendarDaysGridPane());
-        setCalendarDaysGridPane(note.setDatesToWindows(note.getDaysMonth(),note.getThisMonth(),note.getWeekdayAtStartOfMonth(),gridPane));
-        calendarMonthLabel.setText(note.getThisMonth().toString()+"\n"+note.getTodayDate().getYear());
-    }
-
     @FXML
     void initialize() {
-        article1 = new Article();
-        getHeadlines();
-//        *********POGODA*********:
-        weather=new Weather();
-//        *********KALKULATOR***********:
-        calculator=new Calculator();
 //        *********KALENDARZ************:
         note=new Note();
         note.setTodayDate(LocalDate.now());
         note.setThisMonth(note.getTodayDate().getMonth());
         System.out.println(note.getWeekdayAtStartOfMonth());
         setCalendarDaysGridPaneContent();
+//        *********POGODA*********:
+        weather=new Weather();
+//        *********KALKULATOR***********:
+        calculator=new Calculator();
+//        ********NEWS API***********:
+        article1 = new Article();
+        getHeadlines();
     }
 }

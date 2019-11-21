@@ -55,8 +55,6 @@ public class CRUD {
         boolean result = false;
 
         int id;
-//        LoginScreenController loginScreenController=new LoginScreenController();
-
 
         while (rs.next()){
             counter++;
@@ -76,9 +74,6 @@ public class CRUD {
                 }
             }
         }
-
-
-
 
         if(checkLogin & checkPass & counter==1){
             result=true;

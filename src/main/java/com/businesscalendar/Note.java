@@ -1,12 +1,9 @@
 package com.businesscalendar;
 
-import com.businesscalendar.controllers.ChooseScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -36,32 +33,16 @@ public class Note {
         return weekdayAtStartOfMonth;
     }
 
-    public LocalDate getNoteDate() {
-        return noteDate;
-    }
-
     public LocalDate getTodayDate() {
         return todayDate;
-    }
-
-    public LocalDate getFirstDay() {
-        return firstDay;
     }
 
     public Month getThisMonth() {
         return thisMonth;
     }
 
-    public void setNoteDate(LocalDate noteDate) {
-        this.noteDate = noteDate;
-    }
-
     public void setTodayDate(LocalDate todayDate) {
         this.todayDate = todayDate;
-    }
-
-    public void setFirstDay(LocalDate firstDay) {
-        this.firstDay = firstDay;
     }
 
     public void setThisMonth(Month thisMonth) {
@@ -175,9 +156,7 @@ public class Note {
         return date;
     }
 
-    public int getUserID() {
-        return userID;
-    }
+    public Note(){}
 
     public Note(int noteID, String note, LocalDate date, int userID) {
         this.noteID = noteID;
@@ -185,6 +164,4 @@ public class Note {
         this.date = date;
         this.userID = userID;
     }
-
-    public Note(){}
 }

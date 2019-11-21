@@ -21,7 +21,6 @@ public class SelectScreenController {
         LoginScreenController loginScreenController = fxmlLoader.getController();
         loginScreenController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(anchorPane);
-
     }
 
     @FXML

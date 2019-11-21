@@ -22,9 +22,6 @@ public class Article implements UseApi {
 
         private Image image;
 
-
-
-
     public String getTitle() {
         return title;
     }
@@ -153,15 +150,11 @@ public class Article implements UseApi {
                 article.setPicSmall(picSmall);
             }
 
-
             article.setTitle(title);
             article.setUrl(url);
             article.setPreview(preview);
 
-
             articleLinkedList.add(article);
-
-
         }
 
         return articleLinkedList;
@@ -193,7 +186,4 @@ public class Article implements UseApi {
 //
 //        return response;
 //    }
-
-
-
 }

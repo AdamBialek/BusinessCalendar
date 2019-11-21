@@ -20,13 +20,9 @@ public class Main extends Application {
         flowPane.setPrefHeight(640);
         flowPane.setPrefWidth(960);
 
-//        primaryStage.setMinWidth(250);
-//        primaryStage.setMinHeight(250);
-
         Scene scene=new Scene(flowPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Business Calendar");
         primaryStage.show();
     }
-
 }
