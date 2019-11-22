@@ -81,6 +81,12 @@ public class CRUD {
         return result;
     }
 
+    public void deleteUser() throws SQLException {
+        Statement statement = connection.createStatement();
+        String update = new StringBuilder("DELETE FROM Users WHERE UserID='").append(loginData.getUserID()+"'").toString();
+        statement.executeUpdate(update);
+    }
+
 //    *********************WSZYSTKO DLA NOTATEK***************************:
 
     public void addNote(String note, LocalDate noteDate, int userID) throws SQLException {
@@ -121,6 +127,13 @@ public class CRUD {
     public void deleteNote(int noteId) throws SQLException {
         Statement statement = connection.createStatement();
         String update = new StringBuilder("DELETE FROM notes WHERE NoteID='").append(noteId+"'").toString();
+        statement.executeUpdate(update);
+    }
+
+    public void deleteUserNotes() throws SQLException {
+        System.out.println(loginData.getUserID());
+        Statement statement = connection.createStatement();
+        String update = new StringBuilder("DELETE FROM notes WHERE UserID='").append(loginData.getUserID()+"'").toString();
         statement.executeUpdate(update);
     }
 }

@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -419,6 +421,21 @@ public class MenuScreenController {
         }
     }
 
+//    ***********USUN USERA***********:
+
+    private Connection connection;
+
+    private Login login;
+
+    private CRUD crud;
+
+    @FXML
+    private void deleteAccount() throws SQLException {
+        crud.deleteUserNotes();
+        crud.deleteUser();
+        mainScreenController.loadMenuScreen();
+    }
+
     @FXML
     void initialize() {
 //        *********KALENDARZ************:
@@ -434,5 +451,9 @@ public class MenuScreenController {
 //        ********NEWS API***********:
         article1 = new Article();
         getHeadlines();
+//        ********USUN USERA*********:
+        connection=new SQLConnection().getConnection();
+        crud=new CRUD(connection);
+        login=new Login();
     }
 }

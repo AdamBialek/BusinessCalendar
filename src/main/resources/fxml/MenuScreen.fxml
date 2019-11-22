@@ -115,6 +115,7 @@
                   <Button layoutX="254.0" layoutY="7.0" mnemonicParsing="false" onAction="#nextMonthSwitch" prefHeight="31.0" prefWidth="90.0" text="Next" />
                </children>
             </AnchorPane>
+            <Button layoutX="367.0" layoutY="45.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
          </children>
       </AnchorPane>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="639.0" prefWidth="302.0" spacing="10.0">
