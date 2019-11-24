@@ -6,10 +6,10 @@ public class SQLConnection {
     private Connection connection;
 
     public Connection connectionToSQLServer() {
-        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=Calendar;integratedSecurity=true;";
+        String url = "jdbc:sqlite:usersandnotes.db";
 
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(url);
             System.out.println(connection);
 

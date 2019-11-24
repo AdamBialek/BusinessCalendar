@@ -130,6 +130,7 @@ public class ChooseScreenController {
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
         login=new Login();
+        System.out.println(login.getUserID());
         if(login.getNotesOfDay().size()>0){
             Note initial=login.getNotesOfDay().get(0);
             login.setNoteId(initial.getNoteID());

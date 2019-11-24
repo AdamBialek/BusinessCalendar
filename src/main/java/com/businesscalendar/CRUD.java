@@ -83,7 +83,7 @@ public class CRUD {
 
     public void deleteUser() throws SQLException {
         Statement statement = connection.createStatement();
-        String update = new StringBuilder("DELETE FROM Users WHERE UserID='").append(loginData.getUserID()+"'").toString();
+        String update = new StringBuilder("DELETE FROM Users WHERE rowid='").append(loginData.getUserID()+"'").toString();
         statement.executeUpdate(update);
     }
 
@@ -91,7 +91,7 @@ public class CRUD {
 
     public void addNote(String note, LocalDate noteDate, int userID) throws SQLException {
         Statement statement = connection.createStatement();
-        String insert = new StringBuilder("INSERT INTO notes (Note, Date, UserID)\nVALUES ('").append(note+"','"+noteDate+"','"+userID+"')").toString();
+        String insert = new StringBuilder("INSERT INTO notes (Note, Date, UserID)\nVALUES ('").append(note+"','"+noteDate.getYear()+"-"+noteDate.getMonth().getValue()+"-"+noteDate.getDayOfMonth()+"','"+userID+"')").toString();
         statement.executeUpdate(insert);
     }
 
@@ -110,9 +110,28 @@ public class CRUD {
         while (rs.next()){
             int noteId = rs.getInt("NoteID");
             String note = rs.getString("Note");
-            Date date = rs.getDate("Date");
+            String dateString = rs.getString("Date");
+            System.out.println(dateString);
+            int year = Integer.valueOf(dateString.substring(0,4));
+            int month=0;
+            int day= 0;
+            try {
+                month = Integer.valueOf(dateString.substring(5,7));
+            } catch (NumberFormatException ex) {
+                month = Integer.valueOf(dateString.substring(5,6));
+            }
+            try {
+                day = Integer.valueOf(dateString.substring(dateString.length()-2));
+                if(day<0){
+                    day=day*-1;
+                }
+            } catch (NumberFormatException ex) {
+                day = Integer.valueOf(dateString.substring(dateString.length()-1));
+            }
+            System.out.println(year+" "+month+" "+day);
+            LocalDate date=LocalDate.of(year,month,day);
             int userId = rs.getInt("UserID");
-            Note noteObject = new Note(noteId, note, date.toLocalDate(), userId);
+            Note noteObject = new Note(noteId, note, date, userId);
             notes.add(noteObject);
         }
         loginData.setNoteList(notes);
