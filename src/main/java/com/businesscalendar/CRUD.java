@@ -131,7 +131,6 @@ public class CRUD {
     }
 
     public void deleteUserNotes() throws SQLException {
-        System.out.println(loginData.getUserID());
         Statement statement = connection.createStatement();
         String update = new StringBuilder("DELETE FROM notes WHERE UserID='").append(loginData.getUserID()+"'").toString();
         statement.executeUpdate(update);
