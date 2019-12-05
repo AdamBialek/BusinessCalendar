@@ -15,6 +15,14 @@ public class Calculator {
 
     private BigDecimal number1;
 
+    public String getCalculatorNumber1() {
+        return calculatorNumber1;
+    }
+
+    public void setCalculatorNumber1(String calculatorNumber1) {
+        this.calculatorNumber1 = calculatorNumber1;
+    }
+
     public String getOperation() {
         return operation;
     }
@@ -23,12 +31,12 @@ public class Calculator {
         this.operation = operation;
     }
 
-    public String getCalculatorNumber1() {
-        return calculatorNumber1;
+    public BigDecimal getNumber1() {
+        return number1;
     }
 
-    public void setCalculatorNumber1(String calculatorNumber1) {
-        this.calculatorNumber1 = calculatorNumber1;
+    public void setNumber1(BigDecimal number1) {
+        this.number1 = number1;
     }
 
     public String assignButtonValue(int value) {
