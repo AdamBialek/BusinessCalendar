@@ -24,4 +24,18 @@ public class CalculatorTest {
         Assertions.assertEquals("-5",calculator.negate());
     }
 
+    @Test
+    public void checkEraseCharacter() {
+        Calculator calculator=new Calculator();
+        calculator.setCalculatorNumber1("425");
+        Assertions.assertEquals("42",calculator.erase());
+    }
+
+    @Test
+    public void checkAddCharacterToNumber() {
+        Calculator calculator=new Calculator();
+        calculator.setCalculatorNumber1("123");
+        Assertions.assertEquals("1234",calculator.assignButtonValue(4));
+    }
+
 }
