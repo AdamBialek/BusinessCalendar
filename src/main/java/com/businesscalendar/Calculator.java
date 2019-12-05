@@ -15,6 +15,14 @@ public class Calculator {
 
     private BigDecimal number1;
 
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
     public String getCalculatorNumber1() {
         return calculatorNumber1;
     }
