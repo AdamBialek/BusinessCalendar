@@ -5,6 +5,7 @@ import com.businesscalendar.Login;
 import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class CreateLoginInfoController {
     private TextField createLogin;
 
     @FXML
-    private TextField createPassword;
+    private PasswordField createPassword;
 
     @FXML
     private void goBackToSelectScreen() throws IOException {

@@ -5,12 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.CreateLoginInfoController">
     <children>
       <AnchorPane layoutX="327.0" layoutY="102.0" prefHeight="436.0" prefWidth="307.0">
          <children>
               <Label layoutX="42.0" layoutY="46.0" text="Create a username" AnchorPane.leftAnchor="42.0" />
-              <TextField fx:id="createPassword" layoutX="42.0" layoutY="157.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
+              <PasswordField fx:id="createPassword" layoutX="42.0" layoutY="157.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
               <Label layoutX="42.0" layoutY="129.0" prefHeight="21.0" prefWidth="124.0" text="Create a password" AnchorPane.leftAnchor="42.0" />
               <TextField fx:id="createLogin" layoutX="42.0" layoutY="74.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
               <Button layoutX="42.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="42.0" />
