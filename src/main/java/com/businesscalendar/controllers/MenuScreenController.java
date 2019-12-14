@@ -430,6 +430,11 @@ public class MenuScreenController {
     private CRUD crud;
 
     @FXML
+    private void logOut() {
+        mainScreenController.loadMenuScreen();
+    }
+
+    @FXML
     private void deleteAccount() throws SQLException {
         crud.deleteUserNotes();
         crud.deleteUser();
