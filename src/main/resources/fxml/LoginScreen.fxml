@@ -7,14 +7,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.LoginScreenController">
    <children>
-      <AnchorPane layoutX="352.0" layoutY="192.0" prefHeight="257.0" prefWidth="256.0">
+      <AnchorPane layoutX="352.0" layoutY="192.0" prefHeight="306.0" prefWidth="256.0">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Login" AnchorPane.leftAnchor="15.0" />
-            <TextField fx:id="passwordContent" layoutX="15.0" layoutY="124.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-            <TextField fx:id="loginContent" layoutX="15.0" layoutY="44.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-            <Label layoutX="15.0" layoutY="93.0" prefHeight="21.0" prefWidth="68.0" text="Password" AnchorPane.leftAnchor="15.0" />
-            <Button layoutX="18.0" layoutY="195.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="15.0" />
-            <Button layoutX="185.0" layoutY="195.0" mnemonicParsing="false" onAction="#attemptLogin" text="Login" AnchorPane.rightAnchor="15.0" />
+            <Label layoutX="15.0" layoutY="53.0" text="Login" AnchorPane.leftAnchor="15.0" />
+            <TextField fx:id="passwordContent" layoutX="15.0" layoutY="163.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <TextField fx:id="loginContent" layoutX="15.0" layoutY="83.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <Label layoutX="15.0" layoutY="132.0" prefHeight="21.0" prefWidth="68.0" text="Password" AnchorPane.leftAnchor="15.0" />
+            <Button layoutX="15.0" layoutY="234.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="15.0" />
+            <Button layoutX="184.0" layoutY="234.0" mnemonicParsing="false" onAction="#attemptLogin" text="Login" AnchorPane.rightAnchor="15.0" />
+            <Label fx:id="loginMessage" layoutX="14.0" layoutY="14.0" text="Login message" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

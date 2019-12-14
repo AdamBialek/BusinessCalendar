@@ -9,13 +9,13 @@
     <children>
       <AnchorPane layoutX="327.0" layoutY="102.0" prefHeight="436.0" prefWidth="307.0">
          <children>
-              <Label layoutX="42.0" layoutY="46.0" text="Set a Login Name" AnchorPane.leftAnchor="42.0" />
+              <Label layoutX="42.0" layoutY="46.0" text="Create a username" AnchorPane.leftAnchor="42.0" />
               <TextField fx:id="createPassword" layoutX="42.0" layoutY="157.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
-              <Label layoutX="42.0" layoutY="129.0" prefHeight="21.0" prefWidth="106.0" text="Set a Password" AnchorPane.leftAnchor="42.0" />
+              <Label layoutX="42.0" layoutY="129.0" prefHeight="21.0" prefWidth="124.0" text="Create a password" AnchorPane.leftAnchor="42.0" />
               <TextField fx:id="createLogin" layoutX="42.0" layoutY="74.0" prefHeight="31.0" prefWidth="241.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="58.0" />
               <Button layoutX="42.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBackToSelectScreen" text="Back" AnchorPane.leftAnchor="42.0" />
               <Button layoutX="175.0" layoutY="360.0" mnemonicParsing="false" onAction="#attemptToRegister" text="Register" AnchorPane.rightAnchor="58.0" />
-            <Label layoutX="42.0" layoutY="218.0" prefHeight="111.0" prefWidth="207.0" text="At least 1 number, 1 upper case and 1 lower case letter. Between 8-15 characters. No spaces. Login and password can't match." textAlignment="JUSTIFY" wrapText="true" />
+            <Label layoutX="42.0" layoutY="201.0" prefHeight="148.0" prefWidth="207.0" text="Username and password can't match. Each must be between 8 and 15 characters long and contain at least 1 number, 1 lowercase and 1 uppercase letter. Use of other kinds of characters isn't permitted." textAlignment="JUSTIFY" wrapText="true" />
          </children>
       </AnchorPane>
     </children>
