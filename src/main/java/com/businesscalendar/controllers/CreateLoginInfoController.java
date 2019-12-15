@@ -1,6 +1,7 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.CRUD;
+import com.businesscalendar.Email;
 import com.businesscalendar.Login;
 import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ public class CreateLoginInfoController {
 
     private Login login;
 
+    private Email email;
+
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
@@ -32,6 +35,9 @@ public class CreateLoginInfoController {
 
     @FXML
     private PasswordField createPassword;
+
+    @FXML
+    private TextField enterEmail;
 
     @FXML
     private void goBackToSelectScreen() throws IOException {
@@ -67,5 +73,6 @@ public class CreateLoginInfoController {
     public void initialize(){
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
+        email=new Email();
     }
 }
