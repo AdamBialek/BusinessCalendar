@@ -57,7 +57,7 @@ public class Login {
         Login.userID = userID;
     }
 
-    public static boolean checkLoginOrPassword(String login){
+    public boolean checkLoginOrPassword(String login){
         String regex = "[A-Z]{1,}";
         String regex2 = "[0-9]{1,}";
         String regex3 = "[a-z]{1,}";

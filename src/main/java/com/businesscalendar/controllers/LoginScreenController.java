@@ -63,6 +63,20 @@ public class LoginScreenController {
     }
 
     @FXML
+    private void forgotPassword() throws SQLException {
+        String loginToCheck=loginContent.getText();
+        int check = crud.loginAvailability(loginToCheck);
+        if(check==1){
+            //TODO
+            loginMessage.setText("Check your email");
+        }  else if(loginContent.getText().length()==0){
+            loginMessage.setText("Input your username");
+        } else {
+            loginMessage.setText("Input existing username");
+        }
+    }
+
+    @FXML
     public void initialize() {
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);

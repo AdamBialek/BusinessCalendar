@@ -54,14 +54,13 @@ public class CreateLoginInfoController {
         String password = createPassword.getText();
         String email = enterEmail.getText();
 
-        boolean emailOK = login.validateEmail(email);
-
         boolean loginOK = login.checkLoginOrPassword(loginToCheck);
+        boolean passOK = login.checkLoginOrPassword(password);
+        boolean emailOK = login.validateEmail(email);
 
         if(loginOK & emailOK & !loginToCheck.equals(password)){
             int loginAvail=crud.loginAvailability(loginToCheck);
             if(loginAvail==0){
-                boolean passOK = login.checkLoginOrPassword(password);
                 if(passOK){
                     crud.addLoginPass(loginToCheck,password);
                     crud.loginExist(loginToCheck,password);
@@ -72,6 +71,8 @@ public class CreateLoginInfoController {
                     MenuScreenController menuScreenController = fxmlLoader.getController();
                     menuScreenController.setMainScreenController(mainScreenController);
                     mainScreenController.setScreen(anchorPane);
+                } else {
+                    errorMessage.setText("Password is not valid");
                 }
             } else {
                 errorMessage.setText("Username is not available");
