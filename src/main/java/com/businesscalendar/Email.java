@@ -38,8 +38,7 @@ public class Email {
                     InternetAddress.parse(email)
             );
             message.setSubject(action);
-            message.setText("Thanks for singing up with Business Calendar!"
-                    +"\n\n"+initialInfo+"\n\n"+finalInfo);
+            message.setText(initialInfo+"\n\n"+finalInfo);
 
             Transport.send(message);
 
