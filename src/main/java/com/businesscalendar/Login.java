@@ -75,4 +75,15 @@ public class Login {
             return false;
         }
     }
+
+    public boolean validateEmail(String email){
+        String regex = "[a-zA-Z0-9]{1,}@[a-zA-Z]{1,}[.]{1}[a-z]{1}[.]{0,1}[a-zA-Z]{0,1}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if(matcher.find()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

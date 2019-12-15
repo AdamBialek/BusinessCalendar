@@ -19,6 +19,7 @@
             <Label layoutX="42.0" layoutY="310.0" prefHeight="148.0" prefWidth="207.0" text="Username and password can't match. Each must be between 8 and 15 characters long and contain at least 1 number, 1 lowercase and 1 uppercase letter. Use of other kinds of characters isn't permitted." textAlignment="JUSTIFY" wrapText="true" />
             <Label layoutX="42.0" layoutY="213.0" text="Your email" />
             <TextField fx:id="enterEmail" layoutX="42.0" layoutY="239.0" prefHeight="31.0" prefWidth="207.0" />
+            <Label fx:id="errorMessage" layoutX="42.0" layoutY="14.0" text="Label" textFill="RED" />
          </children>
       </AnchorPane>
     </children>

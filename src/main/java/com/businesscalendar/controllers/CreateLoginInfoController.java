@@ -6,6 +6,7 @@ import com.businesscalendar.Login;
 import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -31,6 +32,9 @@ public class CreateLoginInfoController {
     }
 
     @FXML
+    private Label errorMessage;
+
+    @FXML
     private TextField createLogin;
 
     @FXML
@@ -48,17 +52,21 @@ public class CreateLoginInfoController {
     private void attemptToRegister() throws IOException, SQLException {
         String loginToCheck = createLogin.getText();
         String password = createPassword.getText();
+        String email = enterEmail.getText();
 
-        boolean loginOK = login.checkLoginOrPassword(loginToCheck);
+        boolean emailOK = login.validateEmail(email);
 
-        if(loginOK & !loginToCheck.equals(password)){
+        boolean loginOK = Login.checkLoginOrPassword(loginToCheck);
+
+        if(loginOK & emailOK & !loginToCheck.equals(password)){
             int loginAvail=crud.loginAvailability(loginToCheck);
             if(loginAvail==0){
-                boolean passOK = login.checkLoginOrPassword(password);
+                boolean passOK = Login.checkLoginOrPassword(password);
                 if(passOK){
                     crud.addLoginPass(loginToCheck,password);
                     crud.loginExist(loginToCheck,password);
                     crud.getNotesById();
+                    Email.sendMessage("Registration confirmation","Your username is: "+loginToCheck,"The Business Calendar Team",email);
                     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
                     FlowPane anchorPane = fxmlLoader.load();
                     MenuScreenController menuScreenController = fxmlLoader.getController();
@@ -66,6 +74,8 @@ public class CreateLoginInfoController {
                     mainScreenController.setScreen(anchorPane);
                 }
             }
+        } else if (loginOK & !loginToCheck.equals(password) & !emailOK) {
+            errorMessage.setText("Provide valid email address");
         }
     }
 
@@ -74,5 +84,7 @@ public class CreateLoginInfoController {
         connection=new SQLConnection().getConnection();
         crud = new CRUD(connection);
         email=new Email();
+        login=new Login();
+        errorMessage.setText("");
     }
 }
