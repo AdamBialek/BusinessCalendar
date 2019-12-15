@@ -56,12 +56,12 @@ public class CreateLoginInfoController {
 
         boolean emailOK = login.validateEmail(email);
 
-        boolean loginOK = Login.checkLoginOrPassword(loginToCheck);
+        boolean loginOK = login.checkLoginOrPassword(loginToCheck);
 
         if(loginOK & emailOK & !loginToCheck.equals(password)){
             int loginAvail=crud.loginAvailability(loginToCheck);
             if(loginAvail==0){
-                boolean passOK = Login.checkLoginOrPassword(password);
+                boolean passOK = login.checkLoginOrPassword(password);
                 if(passOK){
                     crud.addLoginPass(loginToCheck,password);
                     crud.loginExist(loginToCheck,password);
@@ -73,9 +73,18 @@ public class CreateLoginInfoController {
                     menuScreenController.setMainScreenController(mainScreenController);
                     mainScreenController.setScreen(anchorPane);
                 }
+            } else {
+                errorMessage.setText("Username is not available");
             }
-        } else if (loginOK & !loginToCheck.equals(password) & !emailOK) {
+        } else if(!loginOK & loginToCheck.equals(password) & !emailOK) {
+            errorMessage.setText("Username is not valid and \ncan't match the password.\nEmail is not valid");
+        }
+        else if (loginOK & !loginToCheck.equals(password) & !emailOK) {
             errorMessage.setText("Provide valid email address");
+        } else if(!loginOK){
+            errorMessage.setText("Username is not valid");
+        } else if(loginToCheck.equals(password)){
+            errorMessage.setText("Username and password can't match");
         }
     }
 
