@@ -62,7 +62,7 @@ public class CreateLoginInfoController {
             int loginAvail=crud.loginAvailability(loginToCheck);
             if(loginAvail==0){
                 if(passOK){
-                    crud.addLoginPass(loginToCheck,password);
+                    crud.addLoginPass(loginToCheck,password,email);
                     crud.loginExist(loginToCheck,password);
                     crud.getNotesById();
                     Email.sendMessage("Registration confirmation","Your username is: "+loginToCheck,"The Business Calendar Team",email);

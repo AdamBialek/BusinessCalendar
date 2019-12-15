@@ -1,6 +1,7 @@
 package com.businesscalendar.controllers;
 
 import com.businesscalendar.CRUD;
+import com.businesscalendar.Email;
 import com.businesscalendar.Login;
 import com.businesscalendar.SQLConnection;
 import javafx.fxml.FXML;
@@ -67,7 +68,9 @@ public class LoginScreenController {
         String loginToCheck=loginContent.getText();
         int check = crud.loginAvailability(loginToCheck);
         if(check==1){
-            //TODO
+            String email = crud.getEmail(loginToCheck);
+            String password=crud.passwordReminder(loginToCheck);
+            Email.sendMessage("Password reminder","Your password is: "+password,"The Business Calendar Team",email);
             loginMessage.setText("Check your email");
         }  else if(loginContent.getText().length()==0){
             loginMessage.setText("Input your username");

@@ -27,11 +27,45 @@ public class CRUD {
         return count;
     }
 
-    public void addLoginPass(String login,String pass) throws SQLException {
+    public String passwordReminder(String login) throws SQLException {
         Statement statement = connection.createStatement();
 
-        String insert = new StringBuilder("INSERT INTO Users (Login, Password)\nVALUES ('").append(login+"','").
-                append(pass+"');").toString();
+        String select = new StringBuilder("SELECT Password FROM Users\n" +
+                "WHERE Login='").append(login+"'").toString();
+
+        ResultSet rs = statement.executeQuery(select);
+
+        int count=0;
+        String password="";
+        while (rs.next()){
+            count++;
+            password=rs.getString("Password");
+        }
+        return password;
+    }
+
+    public String getEmail(String login) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String select = new StringBuilder("SELECT Email FROM Users\n" +
+                "WHERE Login='").append(login+"'").toString();
+
+        ResultSet rs = statement.executeQuery(select);
+
+        int count=0;
+        String email="";
+        while (rs.next()){
+            count++;
+            email=rs.getString("Email");
+        }
+        return email;
+    }
+
+    public void addLoginPass(String login,String pass, String email) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String insert = new StringBuilder("INSERT INTO Users (Login, Password, Email)\nVALUES ('").append(login+"','").
+                append(pass+"','").append(email+"');").toString();
 
         statement.executeUpdate(insert);
     }
