@@ -64,10 +64,39 @@ public class CRUD {
     public void addLoginPass(String login,String pass, String email) throws SQLException {
         Statement statement = connection.createStatement();
 
-        String insert = new StringBuilder("INSERT INTO Users (Login, Password, Email)\nVALUES ('").append(login+"','").
-                append(pass+"','").append(email+"');").toString();
+        String insert = new StringBuilder("INSERT INTO Users (Login, Password, Email, Attempts)\nVALUES ('").append(login+"','").
+                append(pass+"','").append(email+"','").append(0+"');").toString();
 
         statement.executeUpdate(insert);
+    }
+
+    public int attemptNo(String login) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String select = new StringBuilder("SELECT Attempts FROM Users\n" +
+                "WHERE Login='").append(login+"'").toString();
+
+        ResultSet rs = statement.executeQuery(select);
+
+        int attempts=0;
+        while (rs.next()){
+            attempts=rs.getInt("Attempts");
+            attempts++;
+        }
+
+        Statement statement1 = connection.createStatement();
+
+        String insert = new StringBuilder("UPDATE Users SET Attempts=").append(attempts+"\n").append("WHERE Login='"+login+"';").toString();
+        statement1.executeUpdate(insert);
+
+        return attempts;
+    }
+
+    public void setAttempts(String login) throws SQLException {
+        Statement statement1 = connection.createStatement();
+
+        String insert = new StringBuilder("UPDATE Users SET Attempts=").append(0+"\n").append("WHERE Login='"+login+"';").toString();
+        statement1.executeUpdate(insert);
     }
 
     Login loginData = new Login();

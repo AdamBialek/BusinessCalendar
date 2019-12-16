@@ -45,8 +45,10 @@ public class LoginScreenController {
     @FXML
     private void attemptLogin() throws IOException, SQLException {
         boolean check = crud.loginExist(loginContent.getText(), passwordContent.getText());
-        crud.getNotesById();
-        if(check){
+        int attempt = crud.attemptNo(loginContent.getText());
+        if(check && attempt<4){
+            crud.getNotesById();
+            crud.setAttempts(loginContent.getText());
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
             FlowPane anchorPane = fxmlLoader.load();
             MenuScreenController menuScreenController = fxmlLoader.getController();
@@ -58,7 +60,13 @@ public class LoginScreenController {
             if(passwordContent.getText().length()==0){
                 loginMessage.setText("Enter a password");
             } else if(!check){
-                loginMessage.setText("Wrong password");
+                if(attempt==1){
+                    loginMessage.setText("Wrong password\n2 attempts remaining");
+                } else if(attempt==2){
+                    loginMessage.setText("Wrong password\n1 attempts remaining");
+                } else if(attempt>2){
+                    loginMessage.setText("Account blocked.\nUse Forgot Password? button");
+                }
             }
         }
     }
@@ -68,6 +76,7 @@ public class LoginScreenController {
         String loginToCheck=loginContent.getText();
         int check = crud.loginAvailability(loginToCheck);
         if(check==1){
+            crud.setAttempts(loginContent.getText());
             String email = crud.getEmail(loginToCheck);
             String password=crud.passwordReminder(loginToCheck);
             Email.sendMessage("Password reminder","Your password is: "+password,"The Business Calendar Team",email);
