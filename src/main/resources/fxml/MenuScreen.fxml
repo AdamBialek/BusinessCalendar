@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
@@ -17,7 +19,31 @@
 
 <FlowPane alignment="CENTER" hgap="30.0" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.MenuScreenController">
    <children>
-      <AnchorPane prefHeight="639.0" prefWidth="571.0">
+      <AnchorPane prefHeight="30.0" prefWidth="961.0">
+         <children>
+            <MenuBar layoutX="-1.0" layoutY="-2.0" prefHeight="32.0" prefWidth="961.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Account">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#logOut" text="Sign out" />
+                    <MenuItem mnemonicParsing="false" onAction="#deleteAccount" text="Delete account" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Change email" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Contact us" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="615.0" prefWidth="571.0">
          <children>
             <GridPane fx:id="calendarDaysGridPane" gridLinesVisible="true" layoutY="289.0" prefHeight="387.0" prefWidth="571.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <columnConstraints>
@@ -82,7 +108,7 @@
                   <Button fx:id="dayCard41" mnemonicParsing="false" onMousePressed="#onDateClick" prefHeight="64.0" prefWidth="91.0" text="Button" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
-            <GridPane gridLinesVisible="true" layoutX="50.0" layoutY="45.0" prefHeight="119.0" prefWidth="234.0">
+            <GridPane gridLinesVisible="true" layoutX="51.0" layoutY="21.0" prefHeight="119.0" prefWidth="233.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="234.0" />
                   <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
@@ -108,22 +134,20 @@
                   </GridPane>
                </children>
             </GridPane>
-            <AnchorPane layoutX="112.0" layoutY="175.0" prefHeight="45.0" prefWidth="340.0">
+            <AnchorPane layoutX="112.0" layoutY="154.0" prefHeight="45.0" prefWidth="340.0">
                <children>
                   <Label fx:id="calendarMonthLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" prefHeight="47.0" prefWidth="102.0" text="Label" wrapText="true" />
                   <Button layoutY="7.0" mnemonicParsing="false" onAction="#prevMonthSwitch" prefHeight="31.0" prefWidth="90.0" text="Previous" />
                   <Button layoutX="254.0" layoutY="7.0" mnemonicParsing="false" onAction="#nextMonthSwitch" prefHeight="31.0" prefWidth="90.0" text="Next" />
                </children>
             </AnchorPane>
-            <Button layoutX="367.0" layoutY="89.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
-            <Button layoutX="367.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" prefHeight="31.0" prefWidth="122.0" text="Log out" />
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="639.0" prefWidth="302.0" spacing="10.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="528.0" prefWidth="302.0" spacing="10.0">
          <children>
-            <AnchorPane prefHeight="331.0" prefWidth="295.0">
+            <AnchorPane prefHeight="299.0" prefWidth="295.0">
                <children>
-                  <GridPane gridLinesVisible="true" prefHeight="331.0" prefWidth="295.0">
+                  <GridPane gridLinesVisible="true" layoutX="4.0" prefHeight="313.0" prefWidth="288.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -135,7 +159,7 @@
                         <RowConstraints />
                     </rowConstraints>
                      <children>
-                        <GridPane prefHeight="334.0" prefWidth="295.0" GridPane.rowSpan="5">
+                        <GridPane prefHeight="318.0" prefWidth="298.0" GridPane.rowSpan="5">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

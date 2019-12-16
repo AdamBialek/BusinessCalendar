@@ -421,7 +421,7 @@ public class MenuScreenController {
         }
     }
 
-//    ***********USUN USERA***********:
+//    ***********FUNKCJONALNOSCI KONTA USERA***********:
 
     private Connection connection;
 

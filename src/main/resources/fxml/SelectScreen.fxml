@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.SelectScreenController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="436.0" layoutY="201.0" text="Select option" />
-      <Button layoutX="379.0" layoutY="320.0" mnemonicParsing="false" onAction="#enterLogin" text="Login" />
+      <Button layoutX="363.0" layoutY="320.0" mnemonicParsing="false" onAction="#enterLogin" text="Sign in" />
       <Button layoutX="524.0" layoutY="320.0" mnemonicParsing="false" onAction="#enterRegister" text="Register" />
    </children>
 </AnchorPane>
