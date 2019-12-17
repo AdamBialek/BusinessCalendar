@@ -41,9 +41,7 @@ public class SendMailController {
         String title = msgTitle.getText();
         String msg = msgContent.getText();
         int userId = login.getUserID();
-        System.out.println("ID: "+userId);
         String email = crud.getEmailById(userId);
-        System.out.println("Mail: "+email);
         Email.sendMessage("[Contact us] "+title, msg,"User email: "+email,"businesscalendarprompt@gmail.com");
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/MenuScreen.fxml"));
         FlowPane anchorPane = fxmlLoader.load();
