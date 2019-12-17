@@ -61,6 +61,23 @@ public class CRUD {
         return email;
     }
 
+    public String getEmailById(int id) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String select = new StringBuilder("SELECT Email FROM Users\n" +
+                "WHERE UserID=").append(id).toString();
+
+        ResultSet rs = statement.executeQuery(select);
+
+        int count=0;
+        String email="";
+        while (rs.next()){
+            count++;
+            email=rs.getString("Email");
+        }
+        return email;
+    }
+
     public void addLoginPass(String login,String pass, String email) throws SQLException {
         Statement statement = connection.createStatement();
 

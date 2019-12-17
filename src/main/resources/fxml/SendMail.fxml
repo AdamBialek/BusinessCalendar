@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.SendMailController">
    <children>
-      <TextArea fx:id="msgContent" layoutX="53.0" layoutY="42.0" prefHeight="281.0" prefWidth="520.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0" />
+      <TextArea fx:id="msgContent" layoutX="40.0" layoutY="121.0" prefHeight="194.0" prefWidth="520.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="121.0" />
       <Button layoutX="495.0" layoutY="345.0" mnemonicParsing="false" onAction="#sendMsg" prefHeight="31.0" prefWidth="65.0" text="Send" />
       <Button layoutX="400.0" layoutY="345.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="65.0" text="Back" />
+      <TextField fx:id="msgTitle" layoutX="40.0" layoutY="40.0" prefHeight="31.0" prefWidth="520.0" />
+      <Label layoutX="49.0" layoutY="14.0" text="Message title" />
+      <Label layoutX="49.0" layoutY="96.0" text="Label" />
    </children>
 </AnchorPane>

@@ -442,6 +442,15 @@ public class MenuScreenController {
     }
 
     @FXML
+    private void contactUs() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/SendMail.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        SendMailController sendMailController = fxmlLoader.getController();
+        sendMailController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
+    }
+
+    @FXML
     void initialize() {
 //        *********KALENDARZ************:
         note=new Note();
