@@ -465,7 +465,6 @@ public class MenuScreenController {
         note=new Note();
         note.setTodayDate(LocalDate.now());
         note.setThisMonth(note.getTodayDate().getMonth());
-        System.out.println(note.getWeekdayAtStartOfMonth());
         setCalendarDaysGridPaneContent();
 //        *********POGODA*********:
         weather=new Weather();

@@ -198,7 +198,6 @@ public class CRUD {
             int noteId = rs.getInt("NoteID");
             String note = rs.getString("Note");
             String dateString = rs.getString("Date");
-            System.out.println(dateString);
             int year = Integer.valueOf(dateString.substring(0,4));
             int month=0;
             int day= 0;
@@ -215,7 +214,6 @@ public class CRUD {
             } catch (NumberFormatException ex) {
                 day = Integer.valueOf(dateString.substring(dateString.length()-1));
             }
-            System.out.println(year+" "+month+" "+day);
             LocalDate date=LocalDate.of(year,month,day);
             int userId = rs.getInt("UserID");
             Note noteObject = new Note(noteId, note, date, userId);

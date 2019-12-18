@@ -11,8 +11,6 @@ public class SQLConnection {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(url);
-            System.out.println(connection);
-
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
