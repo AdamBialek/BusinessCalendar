@@ -442,8 +442,12 @@ public class MenuScreenController {
     }
 
     @FXML
-    private void changeEmail(){
-
+    private void changeEmail() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/ChangeEmail.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        ChangeEmailController changeEmailController = fxmlLoader.getController();
+        changeEmailController.setMainScreenController(mainScreenController);
+        mainScreenController.setScreen(anchorPane);
     }
 
     @FXML

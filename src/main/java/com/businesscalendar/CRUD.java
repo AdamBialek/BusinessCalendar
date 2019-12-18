@@ -116,6 +116,13 @@ public class CRUD {
         statement1.executeUpdate(insert);
     }
 
+    public void updateEmail(String email,int userID) throws SQLException {
+        Statement statement1 = connection.createStatement();
+
+        String insert = new StringBuilder("UPDATE Users SET Email='").append(email+"'"+"\n").append("WHERE UserID="+userID+";").toString();
+        statement1.executeUpdate(insert);
+    }
+
     Login loginData = new Login();
 
     public boolean loginExist(String login,String password) throws SQLException {

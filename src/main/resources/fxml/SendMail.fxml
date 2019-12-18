@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.SendMailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.businesscalendar.controllers.SendMailController">
    <children>
-      <TextArea fx:id="msgContent" layoutX="40.0" layoutY="121.0" prefHeight="194.0" prefWidth="520.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="121.0" />
-      <Button layoutX="495.0" layoutY="345.0" mnemonicParsing="false" onAction="#sendMsg" prefHeight="31.0" prefWidth="65.0" text="Send" />
-      <Button layoutX="400.0" layoutY="345.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="65.0" text="Back" />
-      <TextField fx:id="msgTitle" layoutX="40.0" layoutY="40.0" prefHeight="31.0" prefWidth="520.0" />
-      <Label layoutX="49.0" layoutY="14.0" text="Message title" />
-      <Label layoutX="49.0" layoutY="96.0" text="Label" />
+      <TextArea fx:id="msgContent" layoutX="40.0" layoutY="205.0" prefHeight="274.0" prefWidth="880.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+      <Button layoutX="776.0" layoutY="537.0" mnemonicParsing="false" onAction="#sendMsg" prefHeight="31.0" prefWidth="65.0" text="Send" />
+      <Button layoutX="645.0" layoutY="537.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="65.0" text="Back" />
+      <TextField fx:id="msgTitle" layoutX="100.0" layoutY="94.0" prefHeight="31.0" prefWidth="760.0" />
+      <Label layoutX="100.0" layoutY="66.0" text="Title" />
+      <Label layoutX="100.0" layoutY="178.0" text="Message" />
    </children>
 </AnchorPane>
