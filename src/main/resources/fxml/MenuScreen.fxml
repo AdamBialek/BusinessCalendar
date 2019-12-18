@@ -31,7 +31,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Change email" />
+                    <MenuItem mnemonicParsing="false" onAction="#changeEmail" text="Change email" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
